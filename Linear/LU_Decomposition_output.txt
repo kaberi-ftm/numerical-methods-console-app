@@ -1,0 +1,14 @@
+Enter num of eqn: Enter the augumented matrix :
+Lower Triangular Matrix :
+         1         0         0
+        -2         1         0
+        -2        -1         1
+Upper Triangular Matrix :
+         2        -1        -2
+         0         4        -1
+         0         0         3
+The solution 
+x1 = -1.875
+x2 = 0.916667
+x3 = -1.33333
+The solution is unique
