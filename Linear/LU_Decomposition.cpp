@@ -106,12 +106,12 @@ int main()
             fout << "Lower Triangular Matrix :" << endl;
             print_matrix(l, n, fout);
 
-            cout<<endl<<endl;
+        fout<<endl<<endl;
 
             fout << "Upper Triangular Matrix :" << endl;
             print_matrix(u, n, fout);
 
-            cout<<endl<<endl;
+        fout<<endl<<endl;
 
             ForwardSubstitution(l, b, y, n);
             BackwardSubstitution(u, x, y, n);
@@ -120,7 +120,7 @@ int main()
             for (int i = 0; i < n; i++)
                 fout << "x" << i + 1 << " = " << x[i] << endl;
 
-            cout<<endl<<endl;
+            fout<<endl<<endl;
 
             fout << "The solution is unique" << endl;
         }

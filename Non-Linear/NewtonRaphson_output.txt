@@ -1,0 +1,28 @@
+NO of Degree of the equation : 
+
+The Function f = 1x^4 + 0x^3 + -5x^2 + 0x^1 + 4x^0
+
+1 :
+Root1  :-2
+NUmber of iterations :4
+Search Interval for root1 [-2.4,-1.95]
+
+
+2 :
+Root2  :-1
+NUmber of iterations :2
+Search Interval for root2 [-1.05,-0.6]
+
+
+3 :
+Root3  :0.999986
+NUmber of iterations :2
+Search Interval for root3 [0.75,1.2]
+
+
+4 :
+Root4  :2.00003
+NUmber of iterations :6
+Search Interval for root4 [1.65,2.1]
+
+

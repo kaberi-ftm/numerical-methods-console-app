@@ -12,8 +12,8 @@ int main()
 
     
         int n;
-        fout << "Enter Number of equations :" << endl;
-        fin >> n;
+        fout<<"Enter Number of equations :" << endl;
+        fin>>n;
 
         vector<vector<double>> a(n, vector<double>(n + 1));
         fout << "Enter the augmented matrix:" << endl;

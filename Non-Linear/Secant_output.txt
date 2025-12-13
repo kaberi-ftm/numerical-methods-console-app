@@ -1,0 +1,22 @@
+Function: 1x^4-5x^2+4
+
+Root 1: -2
+Search interval for root 1 = [-2.4,-1.95]
+Iteration needed for root 1 = 4
+
+
+Root 2: -1.00003
+Search interval for root 2 = [-1.05,-0.6]
+Iteration needed for root 2 = 2
+
+
+Root 3: 1
+Search interval for root 3 = [0.75,1.2]
+Iteration needed for root 3 = 3
+
+
+Root 4: 2
+Search interval for root 4 = [1.65,2.1]
+Iteration needed for root 4 = 5
+
+
