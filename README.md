@@ -79,7 +79,7 @@
 
 ### Gauss Elimination Method
 #### Gauss Elimination Theory
-#### Gauss Elimination Code
+
 #### Gauss Elimination Code
 ```cpp
 #include <iostream>
@@ -193,7 +193,29 @@ int main()
 }
 ```
 #### Gauss Elimination Input
+```
+3
+2 1 -1 8
+-3 -1 2 -11
+-2 1 2 -3
+
+```
 #### Gauss Elimination Output
+```
+Enter Number of equations :
+Enter the augmented matrix:
+
+Echalon form:
+   2.000   1.000  -1.000   8.000
+   0.000   0.500   0.500   1.000
+   0.000   0.000  -1.000   1.000
+
+
+x1 = 2.000
+x2 = 3.000
+x3 = -1.000
+The system has unique solution
+```
 
 ### Gauss Jordan elimination Method
 #### Gauss Jordan Theory
