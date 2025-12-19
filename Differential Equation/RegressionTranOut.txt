@@ -1,0 +1,2 @@
+Exponential Regression Equation:
+y = 1.807 * e^(0.502x)
