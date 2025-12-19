@@ -1,0 +1,4 @@
+Upper limit : 
+Lower limit : 
+ Number of intervals( multiple of 2) : 
+Integral using Simpson's 1/3 Rule = 1.350901

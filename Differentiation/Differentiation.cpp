@@ -2,8 +2,8 @@
 using namespace std;
 
 int main() {
-    ifstream fin("DiffInput.txt");
-    ofstream fout("DiffOutput.txt");
+    ifstream fin("Differentiation_Input.txt");
+    ofstream fout("Differentiation_Output.txt");
 
     if (!fin || !fout) {
         cout << "File can't be opened." << endl;

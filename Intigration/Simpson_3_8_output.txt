@@ -1,0 +1,4 @@
+Upper limit : 
+Lower limit : 
+ Number of intervals( multiple of 3) : 
+Integral using Simpson's 3/8 Rule = 1.340634
