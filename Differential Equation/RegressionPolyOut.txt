@@ -1,0 +1,2 @@
+Polynomial Regression Equation:
+y = 2.000 + 1.000x + 1.000x^2
