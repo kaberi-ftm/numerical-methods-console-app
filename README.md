@@ -238,14 +238,158 @@ The system has unique solution
 ### bisection-method
 #### bisection Theory
 #### bisection Code
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+double f(double x){
+return x*x*x-x*x+2 ;
+}
+
+int main() {
+     fstream fin("BisecIn.txt");
+     ofstream fout("BisecOut.txt");
+   if(!fin)
+   {
+       cout<<"Can't open input file"<<endl;
+       return 1;
+   }
+    if(!fout)
+   {
+       cout<<"Can't open output file"<<endl;
+       return 1;
+   }
+
+    double x1,x2,e;
+    fin>>x1>>x2>>e;
+    if(f(x1)*f(x2)>=0)
+    {
+        fout<<"No root in the given interval"<<endl;
+        return 1;
+
+    }
+        double x0;
+    while (true){
+    x0=(x1+x2)/2;
+    double f1=f(x1);
+    double f2=f(x2);
+    double f0=f(x0);
+   if( f0== 0 || abs((x2-x1)/x2 )<e)
+   {
+       fout<<"Root : "<<x0<<endl;
+       break;
+   }
+   if(f1*f0 <0)
+   {
+       x2=x0;
+   }
+   else
+   {
+       x1=x0;
+   }
+    }
+
+  fin.close();
+  fout.close();
+    return 0;
+}
+```
 #### bisection Input
+```
+-2 2 0.001
+```
 #### bisection Output
+
+```
+Root : -1
+```
 
 ### false-position-method
 #### false-position Theory
 #### false-position Code
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+double f(double x){
+return x*x-9 ;
+}
+
+int main() {
+     fstream fin("FalsePIn.txt");
+     ofstream fout("FalsePOut.txt");
+   if(!fin)
+   {
+       cout<<"Can't open input file"<<endl;
+       return 1;
+   }
+    if(!fout)
+   {
+       cout<<"Can't open output file"<<endl;
+       return 1;
+   }
+
+    double x1,x2,e;
+    fin>>x1>>x2>>e;
+    if(f(x1)*f(x2)>=0)
+    {
+        fout<<"No root in the given interval"<<endl;
+        return 1;
+
+    }
+        double x0;
+        int iter=0;
+    while (iter<1000){
+            iter++;
+    double f1=f(x1);
+    double f2=f(x2);
+    if(f1==f2)
+    {
+        fout<<"Division by zero error in False Position method ."<<endl;
+        break;
+    }
+    x0=x2- f2*(x1-x2)/(f1-f2);
+    double f0=f(x0);
+
+   if( abs(f0)< e || abs(x2-x1) < e)
+   {
+       fout<<"Root : "<<x0<<endl;
+       break;
+   }
+   if(f1*f0 <0)
+   {
+       x2=x0;
+
+   }
+   else
+
+   {
+       x1=x0;
+
+   }
+   if(iter>1000)
+   {
+       fout<<"Maximum iteration exceeded ."<<endl;
+       break;
+   }
+
+
+    }
+    fin.close();
+  fout.close();
+    return 0;
+}
+```
 #### false-position Input
+```
+0 5 0.001
+```
 #### false-position Output
+```
+Root : 2.99991
+```
 
 ### newton-raphson-method
 #### newton-raphson-Theory
@@ -280,8 +424,90 @@ The system has unique solution
 ### Differentiation  Method
 #### Differentiation Theory
 #### Differentiation Code
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ifstream fin("Differentiation_Input.txt");
+    ofstream fout("Differentiation_Output.txt");
+
+    if (!fin || !fout) {
+        cout << "File can't be opened." << endl;
+        return 1;
+    }
+
+    fout << fixed << setprecision(6);
+
+    int n;
+    fin >> n;
+
+    double x[50], y[50], X;
+    for (int i = 0; i < n; i++) fin >> x[i];
+    for (int i = 0; i < n; i++) fin >> y[i];
+    fin >> X;
+
+    double h = x[1] - x[0];
+
+    double fd[50][50];
+    for (int i = 0; i < n; i++) fd[i][0] = y[i];
+    for (int j = 1; j < n; j++)
+        for (int i = 0; i < n - j; i++)
+            fd[i][j] = fd[i + 1][j - 1] - fd[i][j - 1];
+
+    fout << "Forward Difference Table:\n";
+    for (int i = 0; i < n; i++) {
+        fout << setw(8) << x[i];
+        for (int j = 0; j < n - i; j++)
+            fout << setw(12) << fd[i][j];
+        fout << endl;
+    }
+
+    int idx = -1;
+    for (int i = 0; i < n; i++)
+        if (abs(x[i] - X) < 1e-6) {
+            idx = i;
+            break;
+        }
+
+    double der1, der2;
+
+    if (idx == 0) {
+        der1 = (-3*y[0] + 4*y[1] - y[2]) / (2*h);
+        der2 = (y[0] - 2*y[1] + y[2]) / (h*h);
+    } else if (idx == n - 1) {
+        der1 = (3*y[n-1] - 4*y[n-2] + y[n-3]) / (2*h);
+        der2 = (y[n-1] - 2*y[n-2] + y[n-3]) / (h*h);
+    } else {
+        der1 = (y[idx+1] - y[idx-1]) / (2*h);
+        der2 = (y[idx+1] - 2*y[idx] + y[idx-1]) / (h*h);
+    }
+
+    fout << "\nFirst derivative at X = " << X << " is: " << der1 << endl;
+    fout << "Second derivative at X = " << X << " is: " << der2 << endl;
+
+    return 0;
+}
+```
 #### Differentiation Input
+```
+5
+1 2 3 4 5
+1 8 27 64 125
+3
+```
 #### Differentiation Output
+```
+Forward Difference Table:
+1.000000    1.000000    7.000000   12.000000    6.000000    0.000000
+2.000000    8.000000   19.000000   18.000000    6.000000
+3.000000   27.000000   37.000000   24.000000
+4.000000   64.000000   61.000000
+5.000000  125.000000
+
+First derivative at X = 3.000000 is: 28.000000
+Second derivative at X = 3.000000 is: 18.000000
+```
 
 ### Simpson 1/3  Method
 #### Simpson 1/3 Theory
@@ -298,27 +524,297 @@ The system has unique solution
 ### RK4  Method
 #### RK4 Theory
 #### RK4 Code
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+  double f(double x, double y)
+  {
+      return ((x - y)/2);
+  }
+
+int main(){
+    fstream fin("RKinput.txt");
+     ofstream fout("RKoutput.txt");
+   if(!fin)
+   {
+       cout<<"Can't open input file"<<endl;
+       return 1;
+   }
+    if(!fout)
+   {
+       cout<<"Can't open output file"<<endl;
+       return 1;
+   }
+
+ double h,xn,x0,y0;
+    fin>>h>>xn>>x0>>y0;
+
+ //"Enter step size h, final xn, initial x0, initial y0:\n";
+ cout << "Read values: h=" << h << " xn=" << xn << " x0=" << x0 << " y0=" << y0 << endl;
+
+  double x=x0;
+  double y=y0;
+  int s=(xn-x0)/h;
+    for( int i=0;i<s ;i++)  {
+      double k1= h*f(x,y);
+      double k2= h*f(x+h/2.0,y+k1/2.0);
+      double k3= h*f(x+h/2.0,y+k2/2.0);
+      double k4= h*f(x+h,y+k3);
+      y=y+(k1+2*k2+2*k3+k4)/6.0;
+      x=x+h;
+
+  }
+  fout<<"Value of y at x is: "<<y<<endl;
+  fin.close();
+  fout.close();
+
+return 0;
+
+}
+```
 #### RK4 Input
+```
+0.2 2 0 1
+```
 #### RK4 Output
+```
+Value of y at x is: 1.10364
+```
 
 ### Linear Regression  Method
 #### Linear Regression Theory
 #### Linear Regression Code
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ifstream fin("RegressionlinearIn.txt");
+    ofstream fout("RegressionlinearOut.txt");
+
+    if (!fin || !fout)
+    {
+        cout << "File can't be opened ." << endl;
+        return 1;
+    }
+
+    fout << fixed << setprecision(3);
+
+    int n;
+    fin >> n;
+
+    vector<double> x(n), y(n);
+    for (int i = 0; i < n; i++)
+    {
+        fin >> x[i] >> y[i];
+    }
+
+    double sx = 0,sy = 0,sxy = 0,sx2 = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        sx+= x[i];
+        sy+= y[i];
+        sxy+= x[i] * y[i];
+        sx2+= x[i]*x[i];
+    }
+
+    double b = (n * sxy - sx * sy) / (n * sx2 - sx * sx);
+    double a = (sy - b * sx) / n;
+
+    fout << "Linear Regression Equation: " << endl;
+    fout << "y = " << a << " + " << b << "x" << endl;
+
+    return 0;
+}
+```
 #### Linear Regression Input
+```
+7
+1 3
+2 4
+3 4
+4 5
+5 8
+6 9
+7 10
+```
 #### Linear Regression Output
+```
+Linear Regression Equation: 
+y = 1.143 + 1.250x
+```
 
 ### Polynomial Regression  Method
 #### Polynomial Regression Theory
 #### Polynomial Regression Code
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ifstream fin("RegressionPolyIn.txt");
+    ofstream fout("RegressionPolyOut.txt");
+
+    if (!fin || !fout)
+    {
+        cout << "File can't be opened ." << endl;
+        return 1;
+    }
+
+    fout << fixed << setprecision(3);
+
+    int n;
+    fin >> n;
+    vector<double> x(n), y(n);
+    for (int i = 0; i < n; i++)
+       {
+            fin >> x[i] >> y[i];
+       }
+
+    double sx = 0, sx2 = 0, sx3 = 0, sx4 = 0;
+    double sy = 0, sxy = 0, sx2y = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        sx += x[i];
+        sx2 += x[i] * x[i];
+        sx3 += x[i] * x[i] * x[i];
+        sx4 += x[i] * x[i] * x[i] * x[i];
+        sy += y[i];
+        sxy += x[i] * y[i];
+        sx2y += x[i] * x[i] * y[i];
+    }
+
+    int eq = 3;
+    vector<vector<double>> a(eq, vector<double>(eq + 1));
+
+    a[0] = {(double)n, sx,  sx2, sy   };
+    a[1] = { sx,  sx2, sx3, sxy  };
+    a[2] = { sx2, sx3, sx4, sx2y };
+
+    for (int i = 0; i < eq - 1; i++)
+    {
+        if (fabs(a[i][i]) < 1e-9)
+        {
+            for (int k = i + 1; k < eq; k++)
+            {
+                if (fabs(a[k][i]) > 1e-9)
+                {
+                    swap(a[i], a[k]);
+                    break;
+                }
+            }
+        }
+
+        for (int k = i + 1; k < eq; k++)
+        {
+            double factor = a[k][i] / a[i][i];
+            for (int j = i; j <= eq; j++)
+                a[k][j] -= factor * a[i][j];
+        }
+    }
+
+    vector<double> coef(eq);
+    for (int i = eq - 1; i >= 0; i--)
+    {
+        coef[i] = a[i][eq];
+        for (int j = i + 1; j < eq; j++)
+            coef[i] -= a[i][j] * coef[j];
+        coef[i] /= a[i][i];
+    }
+
+    fout << "Polynomial Regression Equation:" << endl;
+    fout << "y = " << coef[0] << " + " << coef[1]
+         << "x + " << coef[2] << "x^2" << endl;
+
+    return 0;
+}
+```
 #### Polynomial Regression Input
+```
+6
+1 4
+2 8
+3 14
+4 22
+5 32
+6 44
+```
 #### Polynomial Regression Output
+```
+Polynomial Regression Equation:
+y = 2.000 + 1.000x + 1.000x^2
+```
 
 ### Transcendental Regression  Method
 #### Transcendental Regression Theory
 #### Transcendental Regression Code
-#### Transcendental Regression Input
-#### Transcendental Regression Output
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main()
+{
+    ifstream fin("RegressionTranIn.txt");
+    ofstream fout("RegressionTranOut.txt");
+
+    if (!fin || !fout)
+    {
+        cout << "File can't be opened ." << endl;
+        return 1;
+    }
+
+    fout << fixed << setprecision(3);
+
+    int n;
+    fin >> n;
+
+    vector<double> x(n), y(n), Y(n);
+    for (int i = 0; i < n; i++)
+    {
+        fin >> x[i] >> y[i];
+        Y[i] = log(y[i]);
+    }
+
+    double sx = 0, sY = 0, sxY = 0, sx2 = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        sx += x[i];
+        sY += Y[i];
+        sxY += x[i] * Y[i];
+        sx2 += x[i] * x[i];
+    }
+
+    double b = (n * sxY - sx * sY) / (n * sx2 - sx * sx);
+    double A = (sY - b * sx) / n;
+    double a = exp(A);
+
+    fout << "Exponential Regression Equation:" << endl;
+    fout << "y = " << a << " * e^(" << b << "x)" << endl;
+
+    return 0;
+}
+```
+#### Transcendental Regression Input
+```
+6
+1 3.0
+2 4.9
+3 8.1
+4 13.5
+5 22.3
+6 36.6
+```
+#### Transcendental Regression Output
+```
+Exponential Regression Equation:
+y = 1.807 * e^(0.502x)
+```
 
 
 
