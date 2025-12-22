@@ -1903,6 +1903,50 @@ Integral using Simpson's 3/8 Rule = 1.340634
 ## Solution of Differential Equations
 ### Runge Kutta 4th Order Method
 #### RK4 Theory
+### 1. Introduction
+The Runge-Kutta 4th Order Method (RK4) is a widely used numerical technique for solving ordinary differential equations (ODEs) of the form dy/dx = f(x, y).  
+It provides an approximate solution at discrete points when analytical solutions are difficult or impossible to obtain.  
+RK4 is popular because it offers a good balance between accuracy and computational effort.  
+It is extensively used in engineering, physics, and scientific computations.
+
+### 2. Mathematical Principle
+The method estimates the value of the unknown function at the next step using a weighted average of slopes (derivatives) evaluated at intermediate points.  
+Given the differential equation dy/dx = f(x, y) and step size h, the next value y_{n+1} is computed as:
+
+
+k_1 = h \cdot f(x_n, y_n)
+
+k_2 = h \cdot f(x_n + \frac{h}{2}, y_n + \frac{k_1}{2})
+
+k_3 = h \cdot f(x_n + \frac{h}{2}, y_n + \frac{k_2}{2})
+
+k_4 = h \cdot f(x_n + h, y_n + k_3)
+
+y_{n+1} = y_n + \frac{1}{6} (k_1 + 2k_2 + 2k_3 + k_4)
+
+
+### 3. Procedure Explanation
+- Choose the initial values x_0 and y_0, along with the step size h.  
+- Compute the four slopes k1, k2, k3, and k4 using the RK4 formulas.  
+- Calculate y_{n+1} as the weighted average of these slopes.  
+- Increment x by the step size h and repeat the process for the required range.  
+- Continue until the solution is obtained at all desired points.
+
+### 4. Algorithm
+1. Initialize x_0, y_0, and step size h.  
+2. Compute k1 = h * f(x_n, y_n)  
+3. Compute k2 = h * f(x_n + h/2, y_n + k1/2)  
+4. Compute k3 = h * f(x_n + h/2, y_n + k2/2)  
+5. Compute k4 = h * f(x_n + h, y_n + k3)  
+6. Update y_{n+1} = y_n + (1/6)*(k1 + 2*k2 + 2*k3 + k4)  
+7. Increment x_n by h and repeat steps 2–6 until the end of the interval.
+
+### 5. Discussion and Comparison
+- RK4 is more accurate than Euler's and lower-order Runge-Kutta methods for the same step size.  
+- It is widely used because it provides a good trade-off between accuracy and computational cost.  
+- Unlike some iterative methods, it does not require solving algebraic equations at each step.  
+- Suitable for a wide range of problems in engineering, physics, and applied mathematics.
+
 #### RK4 Code
 ```cpp
 #include <bits/stdc++.h>
