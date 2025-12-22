@@ -297,9 +297,7 @@ The system has unique solution
 ### Gauss Jordan Elimination Method
 #### Gauss Jordan Theory
 #### Gauss Jordan Code
-```
-
-
+```cpp
 #include <iostream>
 #include <vector>
 #include <bits/stdc++.h>
@@ -395,10 +393,6 @@ int main()
 
     return 0;
 }
-
-
-
-
 ```
 #### Gauss Jordan Input
 ```
@@ -406,11 +400,11 @@ int main()
 2 1 -1 8
 -3 -1 2 -11
 -2 1 2 -3
-````
+```
 
 
 #### Gauss Jordan Output
-````
+```
 Enter Number of equations :
 Enter the augmented matrix:
 
@@ -424,12 +418,12 @@ x2 = 3.000
 x3 = -1.000
 The system has unique solution
 
-````
+```
 
 ### LU Decomposition Method
 #### LU Decomposition Theory
 #### LU Decomposition Code
-```
+```cpp
 #include <iostream>
 #include <bits/stdc++.h>
 #include <vector>
@@ -994,7 +988,7 @@ Newton–Raphson converges faster than Bisection, Regula Falsi, and Secant metho
 However, it requires derivative evaluation and may fail if the initial guess is poor.
 
 #### Newton Raphson Code
-```
+```cpp
 #include <iostream>
 #include <bits/stdc++.h>
 #include<vector>
@@ -1121,7 +1115,7 @@ Unlike Newton–Raphson, it does not require derivative evaluation.
 However, it lacks guaranteed convergence and depends strongly on initial guesses.
 
 #### Secant Code
-```
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -1287,7 +1281,7 @@ Forward interpolation is efficient when the interpolation point lies near the be
 For points near the end, backward interpolation gives better accuracy, while divided difference interpolation is more flexible for irregular data.
 
 #### Forward Interpolation Code
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -1423,7 +1417,7 @@ This approach reduces error when estimating values near the end of the table.
 Backward interpolation performs better than forward interpolation near the end of the dataset.
 Divided difference interpolation remains more general as it does not require equal spacing.
 #### Backward Interpolation Code
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -1551,7 +1545,7 @@ The method allows easy addition of new data points.
 Divided difference interpolation is more flexible than forward and backward methods.
 It is particularly useful when data points are not equally spaced.
 #### Divided Difference Code
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -1748,7 +1742,7 @@ Simpson’s 1/3 Rule is more accurate than basic trapezoidal methods.
 When the number of subintervals is not even, Simpson’s 3/8 Rule is used instead.
 
 #### Simpson 1/3 Code
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -1841,7 +1835,7 @@ Simpson’s 3/8 Rule complements Simpson’s 1/3 Rule.
 Although slightly less accurate in general, it is useful when the subinterval condition of the 1/3 Rule is not satisfied.
 
 #### Simpson 3/8 Code
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
