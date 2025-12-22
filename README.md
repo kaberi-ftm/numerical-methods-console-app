@@ -1739,6 +1739,41 @@ Newton's Divided Difference interpolation Table :
 ## Solution of Differentiation
 ### Differentiation Using Interpolation Method
 #### Differentiation Theory
+### 1. Introduction
+Differentiation Using Interpolation Method is a numerical technique to approximate the derivative of a function when its analytical form is unknown or difficult to differentiate.  
+It uses discrete data points to construct an interpolating polynomial, and then the derivative of that polynomial gives an estimate of the derivative of the function.  
+This method is widely used in engineering and scientific computations where data is available in tabular form.
+
+### 2. Mathematical Principle
+Construct an interpolating polynomial, usually using Newton’s forward, backward, or central difference formula, from the given data points.  
+Differentiate the polynomial to obtain the approximate derivative at the desired point.  
+For example, for Newton’s forward interpolation:  
+
+f'(x₀) ≈ (Δy₀/h) - (Δ²y₀/2h) + (Δ³y₀/3h) - ...  
+
+where Δ represents forward differences and h is the interval between x values.
+
+### 3. Procedure Explanation
+First, collect the tabulated data points (x_i, y_i).  
+Next, construct a difference table (forward or backward) based on the data.  
+Then, formulate the interpolating polynomial using the chosen difference method.  
+Differentiate the polynomial to obtain the derivative at the required point.  
+Finally, evaluate the derivative using the difference table values.
+
+### 4. Algorithm
+ 1: Gather the data points (x_i, y_i).  
+ 2: Construct the forward or backward difference table.  
+ 3: Form the interpolating polynomial using Newton’s formula.  
+ 4: Differentiate the polynomial analytically.  
+ 5: Evaluate the derivative at the desired point using the difference table.  
+ 6: Repeat if derivatives at multiple points are required.
+
+### 5. Discussion and Comparison
+This method is useful when the function is known only through tabulated data.  
+Accuracy depends on the number of data points and the spacing h.  
+Forward differences are suitable for points near the beginning of the table, backward differences for points near the end.  
+It provides an efficient way to approximate derivatives without explicit functional forms.
+
 #### Differentiation Code
 ```cpp
 #include <bits/stdc++.h>
