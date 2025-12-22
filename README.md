@@ -891,7 +891,6 @@ while(a<xmax){
 
 ### Secant Method
 #### Secant Theory
-Secant Method
 
 ### 1. Introduction
 The Secant Method is an open numerical method used to find approximate roots of non-linear equations.
@@ -1054,8 +1053,38 @@ Iteration needed for root 4 = 5
 ```
 
 ## Solution of Interpolations 
+
 ### Forward Interpolation Method
 #### Forward Interpolation Theory
+
+### 1. Introduction
+Interpolation is the process of estimating unknown values of a function using known data points.
+Newton’s Forward Interpolation Method is used when the data points are equally spaced and the value to be estimated lies near the beginning of the data set.
+This method is widely applied in numerical analysis and engineering experiments.
+
+### 2. Mathematical Background
+The method uses forward differences to construct an interpolating polynomial.
+It assumes a constant interval h between successive x-values.
+The parameter p is defined as:
+p = (x - x0) / h
+The interpolation formula is:
+y = y0 + pΔy0 + p(p−1)/2! Δ²y0 + ...
+
+### 3. Working Principle
+A forward difference table is constructed using the given data.
+The polynomial is formed using successive forward differences.
+As the interpolation point moves further from the starting value, higher-order differences become significant.
+
+### 4. Algorithm
+1. Construct the forward difference table.
+2. Compute the value of p.
+3. Substitute known values into the interpolation formula.
+4. Evaluate the polynomial.
+
+### 5. Discussion and Comparison
+Forward interpolation is efficient when the interpolation point lies near the beginning.
+For points near the end, backward interpolation gives better accuracy, while divided difference interpolation is more flexible for irregular data.
+
 #### Forward Interpolation Code
 ```
 #include <bits/stdc++.h>
@@ -1163,9 +1192,35 @@ Forward Interpolation Table :
 35.6354
 4.63538
 ```
+
 ### Backward Interpolation Method 
 #### Backward Interpolation Theory
 
+### 1. Introduction
+Newton’s Backward Interpolation Method is used when the interpolation point lies near the end of an equally spaced data table.
+It complements the forward interpolation method and provides better accuracy for values near the end of the dataset.
+
+### 2. Mathematical Background
+This method uses backward differences instead of forward differences.
+The parameter p is calculated using the last data point:
+p = (x - xn) / h
+The interpolation formula is:
+y = yn + p∇yn + p(p+1)/2! ∇²yn + ...
+
+### 3. Working Principle
+A backward difference table is constructed starting from the last value.
+The interpolation polynomial is formed using backward differences.
+This approach reduces error when estimating values near the end of the table.
+
+### 4. Algorithm
+1. Construct the backward difference table.
+2. Calculate the value of p.
+3. Apply the backward interpolation formula.
+4. Compute the required value.
+
+### 5. Discussion and Comparison
+Backward interpolation performs better than forward interpolation near the end of the dataset.
+Divided difference interpolation remains more general as it does not require equal spacing.
 #### Backward Interpolation Code
 ```
 #include <bits/stdc++.h>
@@ -1270,6 +1325,30 @@ Backward Interpolation Table :
 
 ### Divided Difference Method
 #### Divided Difference Theory
+
+### 1. Introduction
+Newton’s Divided Difference Interpolation Method is a general interpolation technique applicable to both equally and unequally spaced data.
+It is widely used in practical problems where data spacing is irregular.
+
+### 2. Mathematical Background
+The method is based on divided differences, which are recursive calculations involving differences of function values.
+The interpolating polynomial is constructed incrementally.
+The general form is:
+P(x) = f[x0] + (x−x0)f[x0,x1] + (x−x0)(x−x1)f[x0,x1,x2] + ...
+
+### 3. Working Principle
+Divided differences are calculated and arranged in a table.
+The polynomial is built step-by-step using these values.
+The method allows easy addition of new data points.
+
+### 4. Algorithm
+1. Construct the divided difference table.
+2. Form the interpolation polynomial.
+3. Evaluate the polynomial at the required point.
+
+### 5. Discussion and Comparison
+Divided difference interpolation is more flexible than forward and backward methods.
+It is particularly useful when data points are not equally spaced.
 #### Divided Difference Code
 ```
 #include <bits/stdc++.h>
@@ -1437,9 +1516,36 @@ Forward Difference Table:
 First derivative at X = 3.000000 is: 28.000000
 Second derivative at X = 3.000000 is: 18.000000
 ```
+
 ## Solution of Integration
+
 ### Simpson’s 1/3 Rule Method
 #### Simpson 1/3 Theory
+
+### 1. Introduction
+Numerical integration methods are used to approximate definite integrals.
+Simpson’s 1/3 Rule is one of the most widely used techniques due to its accuracy and simplicity.
+It approximates the integrand using a second-degree polynomial.
+
+### 2. Mathematical Theory
+The interval [a, b] is divided into an even number of subintervals.
+The function is approximated by parabolas passing through three consecutive points.
+The formula is:
+∫f(x)dx ≈ (h/3)[y0 + yn + 4(y1 + y3 + ...) + 2(y2 + y4 + ...)]
+
+### 3. Working Principle
+By fitting parabolas instead of straight lines, Simpson’s 1/3 Rule achieves better accuracy.
+The method performs well for smooth functions.
+
+### 4. Algorithm
+1. Divide the interval into an even number of subintervals.
+2. Evaluate function values.
+3. Apply Simpson’s 1/3 formula.
+
+### 5. Discussion and Comparison
+Simpson’s 1/3 Rule is more accurate than basic trapezoidal methods.
+When the number of subintervals is not even, Simpson’s 3/8 Rule is used instead.
+
 #### Simpson 1/3 Code
 ```
 #include <bits/stdc++.h>
@@ -1509,6 +1615,30 @@ Integral using Simpson's 1/3 Rule = 1.350901
 
 ### Simpson’s 3/8 Rule Method
 #### Simpson 3/8 Theory
+
+### 1. Introduction
+Simpson’s 3/8 Rule is a numerical integration method that approximates the integrand using cubic polynomials.
+It serves as an alternative to Simpson’s 1/3 Rule.
+
+### 2. Mathematical Theory
+The interval is divided into subintervals that are multiples of three.
+The function is approximated using cubic curves.
+The formula is:
+∫f(x)dx ≈ (3h/8)[y0 + yn + 3(y1 + y2 + ...) + 2(y3 + y6 + ...)]
+
+### 3. Working Principle
+Cubic interpolation allows the method to handle certain cases where Simpson’s 1/3 Rule cannot be applied.
+The approximation is based on groups of three subintervals.
+
+### 4. Algorithm
+1. Divide the interval into multiples of three.
+2. Compute function values.
+3. Apply Simpson’s 3/8 formula.
+
+### 5. Discussion and Comparison
+Simpson’s 3/8 Rule complements Simpson’s 1/3 Rule.
+Although slightly less accurate in general, it is useful when the subinterval condition of the 1/3 Rule is not satisfied.
+
 #### Simpson 3/8 Code
 ```
 #include <bits/stdc++.h>
