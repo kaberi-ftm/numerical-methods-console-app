@@ -226,8 +226,167 @@ The system has unique solution
 ### LU Decomposition Method
 #### LU Decomposition Theory
 #### LU Decomposition Code
+```
+#include <iostream>
+#include <bits/stdc++.h>
+#include <vector>
+#include <cmath>
+#include <fstream>
+
+using namespace std;
+
+const int m = 100;
+
+void print_matrix(double mat[][m], int n, ofstream &fout)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+            fout << setw(10) << mat[i][j];
+        fout << endl;
+    }
+}
+
+bool lu(double mat[][m], double l[][m], double u[][m], int n)
+{
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            l[i][j] = u[i][j] = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int k = i; k < n; k++)
+        {
+            double sum = 0;
+            for (int j = 0; j < i; j++)
+                sum += l[i][j] * u[j][k];
+            u[i][k] = mat[i][k] - sum;
+        }
+
+        for (int k = i; k < n; k++)
+        {
+            if (i == k)
+                l[i][i] = 1;
+            else
+            {
+                double sum = 0;
+                for (int j = 0; j < i; j++)
+                    sum += l[k][j] * u[j][i];
+                if (fabs(u[i][i]) < 1e-9)
+                    return false;
+                l[k][i] = (mat[k][i] - sum) / u[i][i];
+            }
+        }
+    }
+
+    if (fabs(u[n - 1][n - 1]) < 1e-9)
+        return false;
+
+    return true;
+}
+
+void ForwardSubstitution(double l[][m], double b[], double y[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        double sum = 0;
+        for (int j = 0; j < i; j++)
+            sum += l[i][j] * y[j];
+        y[i] = b[i] - sum;
+    }
+}
+
+void BackwardSubstitution(double u[][m], double x[], double y[], int n)
+{
+    for (int i = n - 1; i >= 0; i--)
+    {
+        double sum = 0;
+        for (int j = i + 1; j < n; j++)
+            sum += u[i][j] * x[j];
+        x[i] = (y[i] - sum) / u[i][i];
+    }
+}
+
+int main()
+{
+    ifstream fin("LU_Decomposition_input.txt");
+    ofstream fout("LU_Decomposition_output.txt");
+
+    int n;
+    double a[m][m], l[m][m], u[m][m];
+    double b[m], x[m], y[m];
+
+    
+        fout << "Enter num of eqn: ";
+        fin >> n;
+
+        fout << "Enter the augumented matrix :" << endl;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+                fin >> a[i][j];
+            fin >> b[i];
+        }
+
+        bool c = lu(a, l, u, n);
+
+        if (c)
+        {
+            fout << "Lower Triangular Matrix :" << endl;
+            print_matrix(l, n, fout);
+
+        fout<<endl<<endl;
+
+            fout << "Upper Triangular Matrix :" << endl;
+            print_matrix(u, n, fout);
+
+        fout<<endl<<endl;
+
+            ForwardSubstitution(l, b, y, n);
+            BackwardSubstitution(u, x, y, n);
+
+            fout << "The solution " << endl;
+            for (int i = 0; i < n; i++)
+                fout << "x" << i + 1 << " = " << x[i] << endl;
+
+            fout<<endl<<endl;
+
+            fout << "The solution is unique" << endl;
+        }
+        else
+        {
+            fout << " The solution is infinite/no solution" << endl;
+        }
+
+     
+    return 0;
+}
+```
 #### LU Decomposition Input
+```
+3
+2 -1 -2 -2
+-4 6 3 9
+-4 -2 8 -5
+
+```
 #### LU Decomposition Output
+```
+Enter num of eqn: Enter the augumented matrix :
+Lower Triangular Matrix :
+         1         0         0
+        -2         1         0
+        -2        -1         1
+Upper Triangular Matrix :
+         2        -1        -2
+         0         4        -1
+         0         0         3
+The solution 
+x1 = -1.875
+x2 = 0.916667
+x3 = -1.33333
+The solution is unique
+```
 
 ### Inverse Matrix Method
 #### Inverse Matrix Theory
@@ -541,33 +700,533 @@ Root : 2.99991
 ### Newton Raphson Method
 #### Newton Raphson Theory
 #### Newton Raphson Code
+```
+#include <iostream>
+#include <bits/stdc++.h>
+#include<vector>
+#include<cmath>
+using namespace std;
+int n;
+vector<double> a;
+double f(double x)
+{ double sum = 0;
+    for (int i = 0; i <= n; i++) {
+        sum+=a[i]*pow(x,n-i);
+    }
+    return sum;
+}
+double df(double x){
+double sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum+=a[i]*(n-i)*pow(x,n-i-1);
+    }
+    return sum;
+
+}
+
+int main()
+{
+    ifstream fin("NewtonRaphson_input.txt");
+    ofstream fout("NewtonRaphson_output.txt");
+    fout<<"NO of Degree of the equation : ";
+    fout<<endl<<endl;
+    fin>>n;
+    a.resize(n + 1);
+    for (int i = 0; i <= n; i++) {
+        fin>>a[i];
+    }
+
+    fout<<"The Function f = ";
+     for (int i=0; i<=n; i++) {
+        fout <<a[i]<<"x^"<<(n - i);
+        if(i!=n)fout<< " + ";
+    }
+
+    fout<<endl<<endl;
+    
+
+   double xmax=1;
+    for(int i=1;i<=n;i++)
+    {
+        xmax=max(xmax,1+fabs(a[i]/a[0]));
+    }
+
+double step=0.45,a=-xmax,b;
+double e=1e-3;
+int c=0;
+while(a<xmax){
+    b=a+step;
+    if(f(a)*f(b)<0){
+
+        c++;
+        fout<<c<<" :"<<endl;
+
+        double x1=a,x2=b,xr;
+        int it=0;
+        do{
+                 it++;
+            x2= x1-(f(x1)/df(x1));
+            xr=x1;
+            x1=x2;
+
+       
+
+        }while(fabs(f(x2))>e && fabs(x2-xr)>e);
+
+        fout<<"Root"<<c<<"  :"<<x2<<endl;
+        fout<<"NUmber of iterations :"<<it<<endl;
+        fout<<"Search Interval for root"<<c<<" ["<<a<<","<<b<<"]"<<endl<<endl<<endl;
+
+    }
+    a=b;
+}
+
+
+
+
+     return 0;
+}
+```
 #### Newton Raphson Input
+```
+4
+1 0 -5 0 4
+```
 #### Newton Raphson Output
+```
+```
 
 ### Secant Method
 #### Secant Theory
 #### Secant Code
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+const double EPS=1e-3;
+const double STEP=0.45;
+
+double f(double x,const vector<double>&a)
+{
+    double r=0;
+    int n=a.size()-1;
+    for(int i=0;i<=n;i++)
+    {
+        r+=a[i]*pow(x,n-i);
+    }
+    return r;
+}
+
+double secant(double x0,double x1,const vector<double>&a,int &it)
+{
+    double x2;
+    it=0;
+    while(true)
+    {
+        double f0=f(x0,a);
+
+        double f1=f(x1,a);
+        x2=x1-f1*(x1-x0)/(f1-f0);
+
+        it++;
+        if(fabs(x2-x1)<EPS && fabs(f(x2,a))<EPS)
+        {
+            break;
+        }
+        x0=x1;
+        x1=x2;
+    }
+    return x2;
+}
+
+int main()
+{
+    ifstream fin("Secant_input.txt");
+    ofstream fout("Secant_output.txt");
+
+    int n;
+    fin>>n;
+
+    vector<double>a(n+1);
+
+
+    for(int i=0;i<=n;i++)
+    {
+        fin>>a[i];
+    }
+
+    fout<<"Function: ";
+
+    for(int i=0;i<=n;i++)
+    {
+        if(a[i]==0){continue;}
+        if(i!=0 && a[i]>0){fout<<"+";}
+        fout<<a[i];
+        if(n-i>0){fout<<"x";}
+        if(n-i>1){fout<<"^"<<(n-i);}
+    }
+    fout<<endl<<endl;
+
+    double xmax=0;
+    for(int i=1;i<=n;i++)
+    {
+        xmax=max(xmax,fabs(a[i]/a[0]));
+    }
+    xmax=1+xmax;
+
+    int c=0;
+    for(double x=-xmax; x<xmax; x+=STEP)
+    {
+        double l=x;
+        double r=x+STEP;
+        if(f(l,a)*f(r,a)<=0)
+        {
+            c++;
+            int it;
+            double root=secant(l,r,a,it);
+            
+            fout<<"Root "<<c<<": "<<root<<endl;
+
+            fout<<"Search interval for root "<<c<<" = ["<<l<<","<<r<<"]"<<endl;
+
+            fout<<"Iteration needed for root "<<c<<" = "<<it<<endl;
+
+              fout<<endl<<endl;
+        }
+    }
+
+    fin.close();
+    fout.close();
+    return 0;
+}
+```
 #### Secant Input
+```
+4
+1 0 -5 0 4
+```
 #### Secant Output
+```
+Function: 1x^4-5x^2+4
+
+Root 1: -2
+Search interval for root 1 = [-2.4,-1.95]
+Iteration needed for root 1 = 4
+
+
+Root 2: -1.00003
+Search interval for root 2 = [-1.05,-0.6]
+Iteration needed for root 2 = 2
+
+
+Root 3: 1
+Search interval for root 3 = [0.75,1.2]
+Iteration needed for root 3 = 3
+
+
+Root 4: 2
+Search interval for root 4 = [1.65,2.1]
+Iteration needed for root 4 = 5
+
+
+```
 
 ## Solution of Interpolations 
 ### Forward Interpolation Method
 #### Forward Interpolation Theory
 #### Forward Interpolation Code
-#### Forward Interpolation Input
-#### Forward Interpolation Output
+```
+#include <bits/stdc++.h>
+using namespace std;
 
+double fact(int n)
+{
+    double f = 1;
+    for(int i = 2; i <= n; i++)
+    {
+        f *= i;
+    }
+    return f;
+}
+
+int main()
+{
+    ifstream fin("Forward_Interpolation_input.txt");
+    ofstream fout("Forward_Interpolation_output.txt");
+
+    int n;
+    fin >> n;
+
+    double x[50], y[50][50], X;
+
+    for(int i = 0; i < n; i++)
+    {
+        fin >> x[i];
+    }
+
+    for(int i = 0; i < n; i++)
+    {
+        fin >> y[i][0];
+    }
+    fin >> X;
+    
+
+
+    for(int j = 1; j < n; j++)
+    {
+        for(int i = 0; i < n - j; i++)
+        {
+            y[i][j] = y[i + 1][j - 1] - y[i][j - 1];
+        }
+    }
+
+
+
+    fout << "Forward Interpolation Table :" << endl<< endl;
+    for(int i = 0; i < n; i++)
+    {
+        fout << setw(8) << x[i];
+        for(int j = 0; j < n - i; j++)
+            fout << setw(8) << y[i][j];
+        fout << endl;
+    }
+
+fout << endl;
+fout << endl;
+    double h = x[1] - x[0];
+
+    double u = (X - x[0]) / h;
+
+
+
+    double ans = y[0][0];
+    double u_prod = 1;
+
+    for(int i = 1; i < n; i++)
+    {
+        u_prod *= (u - (i - 1));
+        ans += (u_prod * y[0][i]) / fact(i);
+    }
+
+
+
+    fout << ans << endl;
+    fout << ans - y[0][0] << endl;
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+```
+#### Forward Interpolation Input
+```
+6
+35 45 55 65 75 85
+31 42 51 35 31 25
+42.5
+```
+#### Forward Interpolation Output
+```
+Forward Interpolation Table :
+
+      35      31      11      -2     -23      60    -111
+      45      42       9     -25      37     -51
+      55      51     -16      12     -14
+      65      35      -4      -2
+      75      31      -6
+      85      25
+
+
+35.6354
+4.63538
+```
 ### Backward Interpolation Method 
 #### Backward Interpolation Theory
+
 #### Backward Interpolation Code
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+double fact(int n)
+{
+    double f = 1;
+    for(int i = 2; i<= n; i++)
+    {
+        f *= i;
+    }
+    return f;
+}
+
+int main()
+{
+    ifstream fin("Backward_Interpolation_input.txt");
+    ofstream fout("Backward_Interpolation_output.txt");
+
+    int n;
+    fin>>n;
+
+    double x[50],y[50][50],X;
+
+    for(int i= 0; i<n; i++)
+        fin>>x[i];
+
+    for(int i= 0; i < n; i++)
+        fin>>y[i][0];
+
+    fin>>X;
+
+
+
+    for(int j=1;j< n;j++)
+        for(int i=0;i<n-j;i++)
+            y[i][j]= y[i+1][j-1]- y[i][j-1];
+
+
+
+    fout << "Backward Interpolation Table :"<< endl<<endl;
+    for(int i = 0; i < n; i++)
+    {
+        fout << setw(8) << x[i];
+        for(int j = 0; j < n - i; j++)
+            fout << setw(8) << y[i][j];
+        fout << endl;
+    }
+fout <<endl<<endl;
+
+
+    double h =x[1]-x[0];
+
+    double u =(X-x[n-1])/h;
+
+
+
+    double ans = y[n - 1][0];
+    double u_prod = 1;
+
+    for(int i = 1;i<n;i++)
+    {
+        u_prod *=(u +(i-1));
+        ans += (u_prod*y[n-i-1][i])/fact(i);
+    }
+
+
+
+    fout << ans << endl<<endl;
+
+   
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+```
 #### Backward Interpolation Input
+```
+6
+35 45 55 65 75 85
+31 42 51 35 31 25
+72.5
+```
 #### Backward Interpolation Output
+```
+Backward Interpolation Table :
+
+      35      31      11      -2     -23      60    -111
+      45      42       9     -25      37     -51
+      55      51     -16      12     -14
+      65      35      -4      -2
+      75      31      -6
+      85      25
+
+
+29.7257
+
+```
 
 ### Divided Difference Method
 #### Divided Difference Theory
 #### Divided Difference Code
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ifstream fin("DividedDifference_input.txt");
+    ofstream fout("DividedDifference_output.txt");
+
+    int n;
+    fin>>n;
+
+    double x[50], y[50][50], X;
+
+    for(int i=0;i<n;i++)
+        fin>>x[i];
+
+    for(int i=0;i<n;i++)
+        fin>>y[i][0];
+
+    fin>>X;
+
+
+
+    for(int j=1;j<n;j++)
+        for(int i= 0;i < n-j;i++)
+            y[i][j]=(y[i+1][j-1]-y[i][j-1])/(x[i+j]-x[i]);
+
+
+
+    fout<<"Newton's Divided Difference interpolation Table :"<<endl;
+    for(int i = 0;i< n;i++)
+    {
+        fout<<setw(7)<<x[i];
+        for(int j = 0;j<n-i;j++)
+            fout<<setw(7)<<y[i][j];
+        fout<<endl;
+    }
+
+
+
+    double ans =y[0][0];
+    double term=1;
+
+    for(int i = 1;i<n;i++)
+    {
+        term *=(X-x[i-1]);
+        ans +=term*y[0][i];
+    }
+
+
+    fout<<ans<<endl;
+  
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+```
 #### Divided Difference Input
+```
+5
+10 20 35 55 80
+5 18 40 72 120
+50
+
+```
 #### Divided Difference Output
+```
+Newton's Divided Difference interpolation Table :
+     10      5    1.30.00666667-6.34921e-051.69312e-06
+     20     181.466670.003809525.50265e-05
+     35     40    1.60.00711111
+     55     72   1.92
+     80    120
+63.7048
+```
 ## Solution of Differentiation
 ### Differentiation Using Interpolation Method
 #### Differentiation Theory
@@ -660,14 +1319,140 @@ Second derivative at X = 3.000000 is: 18.000000
 ### Simpson’s 1/3 Rule Method
 #### Simpson 1/3 Theory
 #### Simpson 1/3 Code
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+
+double f(double x)
+{
+    return 1.0/(1.0+x*x);
+}
+
+int main()
+{
+    ifstream fin("Simpson_1_3_input.txt");
+    ofstream fout("Simpson_1_3_output.txt");
+
+    double a, b;
+    int n;
+   fout<<"Upper limit : ";
+    fin >> a ;
+    fout<<endl;
+   fout<<"Lower limit : ";
+    fin>>b;
+    fout<<endl;
+fout<<" Number of intervals( multiple of 2) : ";
+    fin>>n;
+fout<<endl;
+    double h=(b-a)/n;
+    double sum = 0.0;
+
+    for(int i=0;i<=n;i++)
+    {
+         double x=a+i*h;
+
+        if(i == 0||i == n)
+            sum+=f(x);
+        else if(i%2 == 0)
+            sum+=2*f(x);
+        else
+            sum+=4*f(x);
+    }
+
+    double integral=(h*sum) / 3;
+
+    fout<<fixed<<setprecision(6);
+    fout<<"Integral using Simpson's 1/3 Rule = "<<integral<<endl;
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+```
+
 #### Simpson 1/3 Input
+```
+0 5
+6
+```
 #### Simpson 1/3 Output
+```
+Upper limit : 
+Lower limit : 
+ Number of intervals( multiple of 2) : 
+Integral using Simpson's 1/3 Rule = 1.350901
+```
 
 ### Simpson’s 3/8 Rule Method
 #### Simpson 3/8 Theory
 #### Simpson 3/8 Code
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+
+double f(double x)
+{
+    return 1.0/(1.0+x*x);
+}
+
+int main()
+{
+    ifstream fin("Simpson_3_8_input.txt");
+    ofstream fout("Simpson_3_8_output.txt");
+
+    double a, b;
+    int n;
+   fout<<"Upper limit : ";
+    fin >> a ;
+    fout<<endl;
+   fout<<"Lower limit : ";
+    fin>>b;
+    fout<<endl;
+fout<<" Number of intervals( multiple of 3) : ";
+    fin>>n;
+fout<<endl;
+    double h=(b-a)/n;
+    double sum = 0.0;
+
+    for(int i=0;i<=n;i++)
+    {
+         double x=a+i*h;
+
+        if(i == 0||i == n)
+            sum+=f(x);
+        else if(i%3 == 0)
+            sum+=2*f(x);
+        else
+            sum+=3*f(x);
+    }
+
+    double integral=(3*h*sum) / 8;
+
+    fout<<fixed<<setprecision(6);
+    fout<<"Integral using Simpson's 3/8 Rule = "<<integral<<endl;
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+```
 #### Simpson 3/8 Input
+```
+0 5
+6
+
+```
 #### Simpson 3/8 Output
+```
+Upper limit : 
+Lower limit : 
+ Number of intervals( multiple of 3) : 
+Integral using Simpson's 3/8 Rule = 1.340634
+```
 ## Solution of Differential Equations
 ### Runge Kutta 4th Order Method
 #### RK4 Theory
