@@ -157,6 +157,35 @@ numerical-methods-console-app/
 ### Gauss Elimination Method
 #### Gauss Elimination Theory
 
+### 1. Introduction
+Gauss Elimination Method is a fundamental numerical technique used to solve systems of linear equations of the form Ax = b.  
+It transforms the system into an upper triangular form, allowing the unknowns to be solved easily using back substitution.  
+This method is widely used in engineering and scientific computations because of its systematic approach.
+
+### 2. Mathematical Principle
+The method works by performing elementary row operations to reduce the coefficient matrix into an upper triangular matrix.  
+Once in triangular form, the equations can be solved sequentially starting from the last equation and moving upward (back substitution).
+
+### 3. Procedure Explanation
+- Represent the system of equations in augmented matrix form [A|b].  
+- Use the first equation to eliminate the first variable from all subsequent equations.  
+- Repeat the process for the second, third, and subsequent variables until an upper triangular matrix is obtained.  
+- Solve for the unknowns using back substitution, starting from the last row.
+
+### 4. Algorithm
+1. Write the system in augmented matrix form [A|b].  
+2. For each pivot row, if necessary, interchange rows to avoid zero pivot elements.  
+3. Divide the pivot row by the pivot element (if required).  
+4. Eliminate the variable from all rows below by subtracting suitable multiples of the pivot row.  
+5. Once the matrix is in upper triangular form, solve for the last variable.  
+6. Substitute the solved variable into previous equations to find all unknowns.
+
+### 5. Discussion and Comparison
+- Gauss Elimination provides a direct solution for any non-singular system of linear equations.  
+- Compared to iterative methods like Jacobi or Gauss-Seidel, it gives an exact solution in a finite number of steps.  
+- It can be computationally expensive for very large systems, with complexity O(n^3).  
+- Pivoting strategies (partial or complete) are often used to improve numerical stability.
+
 #### Gauss Elimination Code
 ```cpp
 #include <iostream>
@@ -296,6 +325,34 @@ The system has unique solution
 
 ### Gauss Jordan Elimination Method
 #### Gauss Jordan Theory
+### 1. Introduction
+Gauss-Jordan Method is a direct numerical technique for solving systems of linear equations of the form Ax = b.  
+It extends the Gauss Elimination Method by reducing the coefficient matrix to a diagonal or identity matrix , allowing the solution to be obtained directly without back substitution.  
+This method is widely used in engineering and scientific computations for small to medium-sized systems.
+
+### 2. Mathematical Principle
+The method applies elementary row operations to transform the augmented matrix [A|b] into a form where the coefficient matrix becomes an identity matrix.  
+Once the identity matrix is achieved, the constants in the last column represent the solution vector x directly.
+
+### 3. Procedure Explanation
+- Write the system in augmented matrix form [A|b].  
+- Use row operations to make the pivot element 1 and eliminate the variable from all other rows.  
+- Repeat for each variable until the coefficient matrix becomes an identity matrix.  
+- Read the solution directly from the last column of the matrix.
+
+### 4. Algorithm
+1. Represent the system as an augmented matrix [A|b].  
+2. Make the first pivot element 1 (if necessary, divide the row).  
+3. Eliminate the first variable from all other rows using row operations.  
+4. Move to the next pivot and repeat steps 2–3 until the coefficient matrix becomes identity.  
+5. The last column of the matrix now contains the solution vector x.
+
+### 5. Discussion and Comparison
+- Gauss-Jordan gives the solution directly without back substitution.  
+- It is more computationally intensive than Gauss Elimination for large systems.  
+- Pivoting may be necessary to avoid division by zero and improve numerical stability.  
+- Suitable for small systems and useful for teaching concepts of matrix operations and linear algebra.
+
 #### Gauss Jordan Code
 ```cpp
 #include <iostream>
@@ -422,6 +479,45 @@ The system has unique solution
 
 ### LU Decomposition Method
 #### LU Decomposition Theory
+### 1. Introduction
+LU Decomposition is a numerical method used to solve systems of linear equations of the form Ax = b by factoring the coefficient matrix A into two matrices: a lower triangular matrix (L) and an upper triangular matrix (U).  
+This method simplifies solving large systems by converting them into two simpler triangular systems, which can be solved using forward and backward substitution.  
+It is widely used in engineering, scientific computations, and numerical linear algebra.
+
+### 2. Mathematical Principle
+The coefficient matrix A is decomposed as:
+
+A = L * U
+
+- L is a lower triangular matrix with 1s on the diagonal.  
+- U is an upper triangular matrix.  
+
+The system Ax = b can then be solved in two steps:
+
+1. Solve Ly = b using forward substitution.  
+2. Solve Ux = y using backward substitution.
+
+### 3. Procedure Explanation
+- Factorize the matrix A into L and U.  
+- Use forward substitution to solve for the intermediate vector y in Ly = b.  
+- Use backward substitution to solve for the solution vector x in Ux = y.  
+- This reduces computational effort and improves efficiency for repeated solutions with different b vectors.
+
+### 4. Algorithm
+1. Represent the system as Ax = b.  
+2. Decompose A into L and U such that A = L * U.  
+3. Solve Ly = b using forward substitution:  
+   - Start from the first row and compute y_i sequentially.  
+4. Solve Ux = y using backward substitution:  
+   - Start from the last row and compute x_i sequentially.  
+5. The vector x is the solution to the original system.
+
+### 5. Discussion and Comparison
+- LU Decomposition is more efficient than Gauss Elimination when solving multiple systems with the same A but different b vectors.  
+- Reduces computational cost by reusing L and U matrices.  
+- Requires the matrix A to be square and non-singular.  
+- Forms the basis for advanced methods in numerical linear algebra and matrix computations.
+
 #### LU Decomposition Code
 ```cpp
 #include <iostream>
@@ -587,6 +683,41 @@ The solution is unique
 
 ### Inverse Matrix Method
 #### Inverse Matrix Theory
+### 1. Introduction
+The Inverse Matrix Method is a numerical technique used to solve systems of linear equations of the form Ax = b.  
+It works by finding the inverse of the coefficient matrix A and multiplying it by the constants vector b to obtain the solution.  
+This method is straightforward and provides a direct solution when the matrix is square and non-singular.
+
+### 2. Mathematical Principle
+For a non-singular square matrix A, the solution of Ax = b is given by:
+
+x = A⁻¹ * b
+
+where A⁻¹ is the inverse of A, satisfying:
+
+A * A⁻¹ = A⁻¹ * A = I
+
+and I is the identity matrix here.
+
+### 3. Procedure Explanation
+- Ensure that the coefficient matrix A is square and invertible.  
+- Compute the inverse of the matrix A using a suitable method (e.g., Gauss-Jordan).  
+- Multiply the inverse matrix by the constants vector b.  
+- The resulting vector gives the solution to the system of equations.
+
+### 4. Algorithm
+1. Write the system in the form Ax = b.  
+2. Verify that A is non-singular.  
+3. Compute the inverse of A (A⁻¹).  
+4. Multiply A⁻1 by b to obtain x.  
+5. The vector x is the solution to the system.
+
+### 5. Discussion and Comparison
+- Provides a direct solution without iterative methods.  
+- Less efficient for large systems compared to elimination or decomposition methods.  
+- Useful for small systems and theoretical understanding.  
+- Forms the basis for advanced linear algebra concepts and applications.
+
 #### Inverse Matrix Code
 ```cpp
 #include <bits/stdc++.h>
