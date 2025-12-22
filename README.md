@@ -1,4 +1,79 @@
+# Numerical Methods Implementation
 
+This repository contains implementations of various numerical methods for solving mathematical problems, including linear and non-linear equations, interpolation, regression, integration, and ordinary differential equations.
+
+
+----
+# Project Structure
+```
+numerical-methods-console-app/
+├── README.md
+├── Differential Equation/
+│   ├── RK4method.cpp
+│   ├── RKinput.txt
+│   └── RKoutput.txt
+├── Differentiation/
+│   ├── Differentiation.cpp
+│   ├── Differentiation_Input.txt
+│   └── Differentiation_Output.txt
+├── Interpolation/
+│   ├── Backward_Interpolation.cpp
+│   ├── Backward_Interpolation_input.txt
+│   ├── Backward_Interpolation_output.txt
+│   ├── DividedDifference.cpp
+│   ├── DividedDifference_input.txt
+│   ├── DividedDifference_output.txt
+│   ├── Forward_Interpolation.cpp
+│   ├── Forward_Interpolation_input.txt
+│   └── Forward_Interpolation_output.txt
+├── Intigration/
+│   ├── Simpson_1_3.cpp
+│   ├── Simpson_1_3_input.txt
+│   ├── Simpson_1_3_output.txt
+│   ├── Simpson_3_8.cpp
+│   ├── Simpson_3_8_input.txt
+│   └── Simpson_3_8_output.txt
+├── Linear/
+│   ├── gaussjordan_elimination.cpp
+│   ├── gaussjordan_elimination_input.txt
+│   ├── gaussjordan_elimination_output.txt
+│   ├── gaussjordan_elimination.cpp
+│   ├── gauss_elimination_input.txt
+│   ├── gauss_elimination_output.txt
+│   ├── LU_Decomposition.cpp
+│   ├── LU_Decomposition_input.txt
+│   ├── LU_Decomposition_output.txt
+│   ├── MatrixInversion.cpp
+│   ├── MatrixIn.txt
+│   └── MatrixOut.txt
+├── Non-Linear/
+│   ├── BisectionMethod.cpp
+│   ├── BisecIn.txt
+│   ├── BisecOut.txt
+│   ├── FalsePositionMethod.cpp
+│   ├── FalsePIn.txt
+│   ├── FalsePOut.txt
+│   ├── NewtonRaphson.cpp
+│   ├── NewtonRaphson_input.txt
+│   ├── NewtonRaphson_output.txt
+│   ├── Secant.cpp
+│   ├── Secant_input.txt
+│   └── Secant_output.txt
+└── Regression/
+    ├── RegressionLinear.cpp
+    ├── RegressionLinearIn.txt
+    ├── RegressionLinearOut.txt
+    ├── RegressionPoly.cpp
+    ├── RegressionPolyIn.txt
+    ├── RegressionPolyOut.txt
+    ├── RegressionTrancendental.cpp
+    ├── RegressionTranIn.txt
+    └── RegressionTranOut.txt
+```
+
+---
+
+# Table of Contents
 ---
 
 [Solution of Linear Equations  :](#solution-of-linear-equations)
@@ -222,8 +297,134 @@ The system has unique solution
 ### Gauss Jordan Elimination Method
 #### Gauss Jordan Theory
 #### Gauss Jordan Code
+```
+
+
+#include <iostream>
+#include <vector>
+#include <bits/stdc++.h>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    ifstream fin("gaussjordan_input.txt");
+    ofstream fout("gaussjordan_output.txt");
+
+    int n;
+    fout << "Enter Number of equations :" << endl;
+    fin >> n;
+
+    vector<vector<double>> a(n, vector<double>(n + 1));
+    fout << "Enter the augmented matrix:" << endl;
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j <= n; j++)
+            fin >> a[i][j];
+
+    for (int i = 0; i < n; i++)
+    {
+        if (fabs(a[i][i]) < 1e-9)
+        {
+            for (int k = i + 1; k < n; k++)
+            {
+                if (fabs(a[k][i]) > 1e-9)
+                {
+                    swap(a[i], a[k]);
+                    break;
+                }
+            }
+        }
+
+        double pivot = a[i][i];
+        for (int j = 0; j <= n; j++)
+            a[i][j] /= pivot;
+
+        for (int k = 0; k < n; k++)
+        {
+            if (k == i) continue;
+            double f = a[k][i];
+            for (int j = 0; j <= n; j++)
+                a[k][j] -= f * a[i][j];
+        }
+    }
+
+    bool noSol = false, infinite = false;
+
+    for (int i = 0; i < n; i++)
+    {
+        bool ze = true;
+        for (int j = 0; j < n; j++)
+            if (fabs(a[i][j]) > 1e-9)
+                ze = false;
+
+        if (ze && fabs(a[i][n]) > 1e-9)
+            noSol = true;
+        else if (ze && fabs(a[i][n]) < 1e-9)
+            infinite = true;
+    }
+
+    fout << endl;
+    fout << "Reduced Row Echelon Form:" << endl;
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j <= n; j++)
+            fout << fixed << setprecision(3) << setw(8) << a[i][j];
+        fout << endl;
+    }
+
+    fout << endl;
+
+    if (noSol)
+    {
+        fout << "The system has no solution" << endl;
+    }
+    else if (infinite)
+    {
+        fout << "The system has infinite solution" << endl;
+    }
+    else
+    {
+        for (int i = 0; i < n; i++)
+            fout << "x" << i + 1 << " = " << fixed << setprecision(3) << a[i][n] << endl;
+
+        fout << "The system has unique solution" << endl;
+    }
+
+    return 0;
+}
+
+
+
+
+```
 #### Gauss Jordan Input
+```
+3
+2 1 -1 8
+-3 -1 2 -11
+-2 1 2 -3
+````
+
+
 #### Gauss Jordan Output
+````
+Enter Number of equations :
+Enter the augmented matrix:
+
+Reduced Row Echelon Form:
+   1.000   0.000   0.000   2.000
+   0.000   1.000   0.000   3.000
+   0.000   0.000   1.000  -1.000
+
+x1 = 2.000
+x2 = 3.000
+x3 = -1.000
+The system has unique solution
+
+````
 
 ### LU Decomposition Method
 #### LU Decomposition Theory
