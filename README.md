@@ -2176,10 +2176,7 @@ c = (Σy - mΣx) / n
 6. Use the equation to predict or estimate values of y.
 
 ### 5. Discussion and Comparison
-- Linear regression provides a simple and effective model for trends that are approximately linear.  
-- Less accurate for non-linear relationships; higher-order regression may be required.  
-- Forms the basis for multiple regression and more advanced predictive techniques.  
-- Widely used in engineering, economics, and scientific data analysis.
+ Linear regression provides a simple and effective model for trends that are approximately linear. Less accurate for non-linear relationships; higher-order regression may be required. Forms the basis for multiple regression and more advanced predictive techniques. Widely used in engineering, economics, and scientific data analysis.
 
 
 #### Linear Regression Code
@@ -2280,10 +2277,7 @@ The coefficients are determined using the least squares method, which minimizes 
 6. Use the equation to predict or estimate values of y.
 
 ### 5. Discussion and Comparison
-- Polynomial regression can model non-linear relationships more accurately than linear regression.  
-- A higher-degree polynomial may lead to overfitting, while a lower degree may underfit.  
-- Widely used in curve fitting, engineering data analysis, and predictive modeling.  
-- Forms the basis for advanced techniques like spline regression or piecewise regression.
+Polynomial regression can model non-linear relationships more accurately than linear regression. A higher-degree polynomial may lead to overfitting, while a lower degree may underfit.  Widely used in curve fitting, engineering data analysis, and predictive modeling.  Forms the basis for advanced techniques like spline regression or piecewise regression.
 
 #### Polynomial Regression Code
 ```cpp
@@ -2418,10 +2412,7 @@ The coefficients a, b, c, etc., are determined using the least squares method, m
 6. Use the equation to estimate or predict values of y.
 
 ### 5. Discussion and Comparison
-- Useful when data follows an exponential, logarithmic, or trigonometric trend.  
-- Provides better fitting than linear or polynomial regression for certain datasets.  
-- Transformations may be required to simplify computations.  
-- Widely applied in population growth, radioactive decay, and engineering applications.
+Useful when data follows an exponential, logarithmic, or trigonometric trend.  Provides better fitting than linear or polynomial regression for certain datasets. Transformations may be required to simplify computations. Widely applied in population growth, radioactive decay, and engineering applications.
 
 #### Transcendental Regression Code
 ```cpp
