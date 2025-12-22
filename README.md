@@ -335,10 +335,7 @@ The method applies elementary row operations to transform the augmented matrix [
 Once the identity matrix is achieved, the constants in the last column represent the solution vector x directly.
 
 ### 3. Procedure Explanation
-- Write the system in augmented matrix form [A|b].  
-- Use row operations to make the pivot element 1 and eliminate the variable from all other rows.  
-- Repeat for each variable until the coefficient matrix becomes an identity matrix.  
-- Read the solution directly from the last column of the matrix.
+Write the system in augmented matrix form [A|b]. Use row operations to make the pivot element 1 and eliminate the variable from all other rows. Repeat for each variable until the coefficient matrix becomes an identity matrix.  Read the solution directly from the last column of the matrix.
 
 ### 4. Algorithm
 1. Represent the system as an augmented matrix [A|b].  
@@ -348,10 +345,7 @@ Once the identity matrix is achieved, the constants in the last column represent
 5. The last column of the matrix now contains the solution vector x.
 
 ### 5. Discussion and Comparison
-- Gauss-Jordan gives the solution directly without back substitution.  
-- It is more computationally intensive than Gauss Elimination for large systems.  
-- Pivoting may be necessary to avoid division by zero and improve numerical stability.  
-- Suitable for small systems and useful for teaching concepts of matrix operations and linear algebra.
+ Gauss-Jordan gives the solution directly without back substitution. It is more computationally intensive than Gauss Elimination for large systems. Pivoting may be necessary to avoid division by zero and improve numerical stability. Suitable for small systems and useful for teaching concepts of matrix operations and linear algebra.
 
 #### Gauss Jordan Code
 ```cpp
@@ -489,8 +483,8 @@ The coefficient matrix A is decomposed as:
 
 A = L * U
 
-- L is a lower triangular matrix with 1s on the diagonal.  
-- U is an upper triangular matrix.  
+ L is a lower triangular matrix with 1s on the diagonal.  
+ U is an upper triangular matrix.  
 
 The system Ax = b can then be solved in two steps:
 
@@ -498,25 +492,19 @@ The system Ax = b can then be solved in two steps:
 2. Solve Ux = y using backward substitution.
 
 ### 3. Procedure Explanation
-- Factorize the matrix A into L and U.  
-- Use forward substitution to solve for the intermediate vector y in Ly = b.  
-- Use backward substitution to solve for the solution vector x in Ux = y.  
-- This reduces computational effort and improves efficiency for repeated solutions with different b vectors.
+ Factorize the matrix A into L and U. Use forward substitution to solve for the intermediate vector y in Ly = b.  Use backward substitution to solve for the solution vector x in Ux = y. This reduces computational effort and improves efficiency for repeated solutions with different b vectors.
 
 ### 4. Algorithm
 1. Represent the system as Ax = b.  
 2. Decompose A into L and U such that A = L * U.  
 3. Solve Ly = b using forward substitution:  
-   - Start from the first row and compute y_i sequentially.  
+    Start from the first row and compute y_i sequentially.  
 4. Solve Ux = y using backward substitution:  
-   - Start from the last row and compute x_i sequentially.  
+    Start from the last row and compute x_i sequentially.  
 5. The vector x is the solution to the original system.
 
 ### 5. Discussion and Comparison
-- LU Decomposition is more efficient than Gauss Elimination when solving multiple systems with the same A but different b vectors.  
-- Reduces computational cost by reusing L and U matrices.  
-- Requires the matrix A to be square and non-singular.  
-- Forms the basis for advanced methods in numerical linear algebra and matrix computations.
+LU Decomposition is more efficient than Gauss Elimination when solving multiple systems with the same A but different b vectors. Reduces computational cost by reusing L and U matrices. Requires the matrix A to be square and non-singular. Forms the basis for advanced methods in numerical linear algebra and matrix computations.
 
 #### LU Decomposition Code
 ```cpp
@@ -700,10 +688,7 @@ A * A⁻¹ = A⁻¹ * A = I
 and I is the identity matrix here.
 
 ### 3. Procedure Explanation
-- Ensure that the coefficient matrix A is square and invertible.  
-- Compute the inverse of the matrix A using a suitable method (e.g., Gauss-Jordan).  
-- Multiply the inverse matrix by the constants vector b.  
-- The resulting vector gives the solution to the system of equations.
+Ensure that the coefficient matrix A is square and invertible. Compute the inverse of the matrix A using a suitable method (e.g., Gauss-Jordan).  Multiply the inverse matrix by the constants vector b.  The resulting vector gives the solution to the system of equations.
 
 ### 4. Algorithm
 1. Write the system in the form Ax = b.  
@@ -713,10 +698,7 @@ and I is the identity matrix here.
 5. The vector x is the solution to the system.
 
 ### 5. Discussion and Comparison
-- Provides a direct solution without iterative methods.  
-- Less efficient for large systems compared to elimination or decomposition methods.  
-- Useful for small systems and theoretical understanding.  
-- Forms the basis for advanced linear algebra concepts and applications.
+ Provides a direct solution without iterative methods. Less efficient for large systems compared to elimination or decomposition methods. Useful for small systems and theoretical understanding.Forms the basis for advanced linear algebra concepts and applications.
 
 #### Inverse Matrix Code
 ```cpp
@@ -2057,11 +2039,7 @@ y_{n+1} = y_n + \frac{1}{6} (k_1 + 2k_2 + 2k_3 + k_4)
 
 
 ### 3. Procedure Explanation
-- Choose the initial values x_0 and y_0, along with the step size h.  
-- Compute the four slopes k1, k2, k3, and k4 using the RK4 formulas.  
-- Calculate y_{n+1} as the weighted average of these slopes.  
-- Increment x by the step size h and repeat the process for the required range.  
-- Continue until the solution is obtained at all desired points.
+Choose the initial values x_0 and y_0, along with the step size h. Compute the four slopes k1, k2, k3, and k4 using the RK4 formulas. Calculate y_{n+1} as the weighted average of these slopes. Increment x by the step size h and repeat the process for the required range.  Continue until the solution is obtained at all desired points.
 
 ### 4. Algorithm
 1. Initialize x_0, y_0, and step size h.  
@@ -2073,10 +2051,7 @@ y_{n+1} = y_n + \frac{1}{6} (k_1 + 2k_2 + 2k_3 + k_4)
 7. Increment x_n by h and repeat steps 2–6 until the end of the interval.
 
 ### 5. Discussion and Comparison
-- RK4 is more accurate than Euler's and lower-order Runge-Kutta methods for the same step size.  
-- It is widely used because it provides a good trade-off between accuracy and computational cost.  
-- Unlike some iterative methods, it does not require solving algebraic equations at each step.  
-- Suitable for a wide range of problems in engineering, physics, and applied mathematics.
+ RK4 is more accurate than Euler's and lower-order Runge-Kutta methods for the same step size. It is widely used because it provides a good trade-off between accuracy and computational cost.  Unlike some iterative methods, it does not require solving algebraic equations at each step. Suitable for a wide range of problems in engineering, physics, and applied mathematics.
 
 #### RK4 Code
 ```cpp
@@ -2151,10 +2126,10 @@ In simple linear regression, the relationship between the dependent variable y a
 y = m * x + c
 
 where:  
-- y is the dependent variable  
-- x is the independent variable  
-- m is the slope of the line  
-- c is the intercept  
+ y is the dependent variable  
+ x is the independent variable  
+ m is the slope of the line  
+ c is the intercept  
 
 The slope and intercept are calculated using the least squares method, which minimizes the sum of squared differences between observed and predicted values:
 
@@ -2162,10 +2137,7 @@ m = (nΣxy - ΣxΣy) / (nΣx² - (Σx)²)
 c = (Σy - mΣx) / n
 
 ### 3. Procedure Explanation
-- Collect paired data points (x_i, y_i).  
-- Compute the sums Σx, Σy, Σx², and Σxy.  
-- Calculate the slope m and intercept c using the least squares formulas.  
-- Construct the regression line y = m*x + c to estimate or predict values.
+Collect paired data points (x_i, y_i). Compute the sums Σx, Σy, Σx², and Σxy. Calculate the slope m and intercept c using the least squares formulas. Construct the regression line y = m*x + c to estimate or predict values.
 
 ### 4. Algorithm
 1. Gather the data points (x_i, y_i).  
@@ -2255,18 +2227,18 @@ The regression equation is expressed as:
 y = a₀ + a₁*x + a₂*x² + ...+ aₙ*xⁿ
 
 where:  
-- y is the dependent variable  
-- x is the independent variable  
-- a₀, a₁, ..., aₙ are the coefficients  
+ y is the dependent variable  
+ x is the independent variable  
+ a₀, a₁, ..., aₙ are the coefficients  
 
 The coefficients are determined using the least squares method, which minimizes the sum of squared differences between observed and predicted values.
 
 ### 3. Procedure Explanation
-- Collect the data points (x_i, y_i).  
-- Decide the degree n of the polynomial based on the trend of the data.  
-- Formulate the system of equations using the least squares method.  
-- Solve for the coefficients a₀, a₁, ..., aₙ.  
-- Construct the polynomial regression equation for prediction or analysis.
+ Collect the data points (x_i, y_i).  
+ Decide the degree n of the polynomial based on the trend of the data.  
+ Formulate the system of equations using the least squares method.  
+ Solve for the coefficients a₀, a₁, ..., aₙ.  
+ Construct the polynomial regression equation for prediction or analysis.
 
 ### 4. Algorithm
 1. Gather the data points (x_i, y_i).  
@@ -2390,18 +2362,14 @@ This method helps in predicting values and analyzing trends in engineering, scie
 ### 2. Mathematical Principle
 In Transcendental Regression, the dependent variable y is related to the independent variable x through a transcendental function. Examples include:
 
-- Exponential: y = a * e^(b*x)  
-- Logarithmic: y = a + b * ln(x)  
-- Trigonometric: y = a * sin(b*x) + c  
+ Exponential: y = a * e^(b*x)  
+ Logarithmic: y = a + b * ln(x)  
+ Trigonometric: y = a * sin(b*x) + c  
 
 The coefficients a, b, c, etc., are determined using the least squares method, minimizing the sum of squared differences between observed and predicted values.
 
 ### 3. Procedure Explanation
-- Collect the data points (x_i, y_i).  
-- Choose the appropriate transcendental function based on the trend of the data.  
-- Transform the function if necessary (e.g., taking logarithms for exponential regression).  
-- Use the least squares method to compute the coefficients.  
-- Construct the regression equation for prediction or analysis.
+Collect the data points (x_i, y_i). Choose the appropriate transcendental function based on the trend of the data.  Transform the function if necessary (e.g., taking logarithms for exponential regression). Use the least squares method to compute the coefficients.  Construct the regression equation for prediction or analysis.
 
 ### 4. Algorithm
 1. Gather the data points (x_i, y_i).  
