@@ -14,7 +14,7 @@
 
 ---
 
-[Solution of NonLinear Equations  :](#solution-of-linear-equations)
+[Solution of NonLinear Equations  :](#solution-of-nonlinear-equations)
 ----
 
 | Algorithm | 📄 Concept | 💻 Source | 📥 Test Data | 📤 Result |
@@ -26,33 +26,33 @@
 
 ---
 
-[Solution of Interpolations  :](#solution-of-linear-equations)
+[Solution of Interpolations  :](#solution-of-interpolations)
 ----
 
 | Algorithm | 📄 Concept | 💻 Source | 📥 Test Data | 📤 Result |
 | :--- | :---: | :---: | :---: | :---: |
 | [**Forward Interpolation**](#forward-interpolation-method) | [Theory](#forward-interpolation-theory) | [Code](#forward-interpolation-code) | [Input](#forward-interpolation-input) | [Output](#forward-interpolation-output) |
-| [**Backward Interpolation**](#Backward-Interpolation) | [Theory](#backward-interpolation-theory) | [Code](#backward-interpolation-code) | [Input](#backward-interpolation-input) | [Output](#backward-interpolation-output) |
+| [**Backward Interpolation**](#backward-interpolation-method) | [Theory](#backward-interpolation-theory) | [Code](#backward-interpolation-code) | [Input](#backward-interpolation-input) | [Output](#backward-interpolation-output) |
 | [**Divided Difference Method**](#divided-difference-method) | [Theory](#divided-difference-theory) | [Code](#divided-difference-code) | [Input](#divided-difference-input) | [Output](#divided-difference-output) |
 
 ---
 
-[Solution of Differentiation  :](#solution-of-linear-equations)
+[Solution of Differentiation :](#solution-of-differentiation)
 ----
 
 | Algorithm | 📄 Concept | 💻 Source | 📥 Test Data | 📤 Result |
 | :--- | :---: | :---: | :---: | :---: |
-| [**Differentiation Using Interpolation**](#differentiation-using-interpolation) | [Theory](#differentiation-theory) | [Code](#differentiation-code) | [Input](#differentiation-input) | [Output](#differentiation-output) |
+| [**Differentiation Using Interpolation**](#differentiation-using-interpolation-method) | [Theory](#differentiation-theory) | [Code](#differentiation-code) | [Input](#differentiation-input) | [Output](#differentiation-output) |
 
 ---
 
-[Solution of Intigration  :](#solution-of-linear-equations)
+[Solution of Integration  :](#solution-of-integration)
 ----
 
 | Algorithm | 📄 Concept | 💻 Source | 📥 Test Data | 📤 Result |
 | :--- | :---: | :---: | :---: | :---: |
-| [**Simpson’s 1/3 Rule**](#simpsons-1/3-rule) | [Theory](#simpson-13-theory) | [Code](#simpson-13-code) | [Input](#simpson-13-input) | [Output](#simpson-13-output) |
-| [**Simpson’s 3/8 Rule**](#simpsons-3/8-rule) | [Theory](#simpson-38-theory) | [Code](#simpson-38-code) | [Input](#simpson-38-input) | [Output](#simpson-38-output) |
+| [**Simpson’s 1/3 Rule**](#simpsons-13-rule-method) | [Theory](#simpson-13-theory) | [Code](#simpson-13-code) | [Input](#simpson-13-input) | [Output](#simpson-13-output) |
+| [**Simpson’s 3/8 Rule**](#simpsons-38-rule-method) | [Theory](#simpson-38-theory) | [Code](#simpson-38-code) | [Input](#simpson-38-input) | [Output](#simpson-38-output) |
 
 ---
 
@@ -65,14 +65,14 @@
 
 ---
 
-[Solution of Regression  :](#solution-of-linear-equations)
+[Solution of Regression  :](#solution-of-regression)
 ----
 
 | Algorithm | 📄 Concept | 💻 Source | 📥 Test Data | 📤 Result |
 | :--- | :---: | :---: | :---: | :---: |
-| [**Linear Regression**](#linear-regression) | [Theory](#linear-regression-theory) | [Code](#linear-regression-code) | [Input](#linear-regression-input) | [Output](#linear-regression-output) |
-| [**Polynomial Regression**](#polynomial-regression) | [Theory](#polynomial-regression-theory) | [Code](#polynomial-regression-code) | [Input](#polynomial-regression-input) | [Output](#polynomial-regression-output) |
-| [**Transcendental Regression**](#transcendental-regression) | [Theory](#transcendental-regression-theory) | [Code](#transcendental-regression-code) | [Input](#transcendental-regression-input) | [Output](#transcendental-regression-output) |
+| [**Linear Regression**](#linear-regression-method) | [Theory](#linear-regression-theory) | [Code](#linear-regression-code) | [Input](#linear-regression-input) | [Output](#linear-regression-output) |
+| [**Polynomial Regression**](#polynomial-regression-method) | [Theory](#polynomial-regression-theory) | [Code](#polynomial-regression-code) | [Input](#polynomial-regression-input) | [Output](#polynomial-regression-output) |
+| [**Transcendental Regression**](#transcendental-regression-method) | [Theory](#transcendental-regression-theory) | [Code](#transcendental-regression-code) | [Input](#transcendental-regression-input) | [Output](#transcendental-regression-output) |
 
 
 ## Solution of Linear Equations
@@ -217,7 +217,7 @@ x3 = -1.000
 The system has unique solution
 ```
 
-### Gauss Jordan elimination Method
+### Gauss Jordan Elimination Method
 #### Gauss Jordan Theory
 #### Gauss Jordan Code
 #### Gauss Jordan Input
@@ -381,10 +381,10 @@ x1 = 2.000
 x2 = 3.000
 x3 = -1.000
 ```
-
-### bisection-method
-#### bisection Theory
-#### bisection Code
+## Solution of NonLinear Equations
+### Bisection Method
+#### Bisection Theory
+#### Bisection Code
 
 ```cpp
 #include <bits/stdc++.h>
@@ -442,19 +442,19 @@ int main() {
     return 0;
 }
 ```
-#### bisection Input
+#### Bisection Input
 ```
 -2 2 0.001
 ```
-#### bisection Output
+#### Bisection Output
 
 ```
 Root : -1
 ```
 
-### false-position-method
-#### false-position Theory
-#### false-position Code
+### False Position Method
+#### False Position Theory
+#### False Position Code
 
 ```cpp
 #include <bits/stdc++.h>
@@ -529,20 +529,20 @@ int main() {
     return 0;
 }
 ```
-#### false-position Input
+#### False Position Input
 ```
 0 5 0.001
 ```
-#### false-position Output
+#### False Position Output
 ```
 Root : 2.99991
 ```
 
-### newton-raphson-method
-#### newton-raphson-Theory
-#### newton-raphson-Code
-#### newton-raphson-Input
-#### newton-raphson-Output
+### Newton Raphson Method
+#### Newton Raphson Theory
+#### Newton Raphson Code
+#### Newton Raphson Input
+#### Newton Raphson Output
 
 ### Secant Method
 #### Secant Theory
@@ -550,25 +550,26 @@ Root : 2.99991
 #### Secant Input
 #### Secant Output
 
-### forward-interpolation-method
+## Solution of Interpolations 
+### Forward Interpolation Method
 #### Forward Interpolation Theory
 #### Forward Interpolation Code
 #### Forward Interpolation Input
 #### Forward Interpolation Output
 
-### Backward-Interpolation 
+### Backward Interpolation Method 
 #### Backward Interpolation Theory
 #### Backward Interpolation Code
 #### Backward Interpolation Input
 #### Backward Interpolation Output
 
-### divided-difference-method
+### Divided Difference Method
 #### Divided Difference Theory
 #### Divided Difference Code
 #### Divided Difference Input
 #### Divided Difference Output
-
-### Differentiation  Method
+## Solution of Differentiation
+### Differentiation Using Interpolation Method
 #### Differentiation Theory
 #### Differentiation Code
 ```cpp
@@ -655,20 +656,20 @@ Forward Difference Table:
 First derivative at X = 3.000000 is: 28.000000
 Second derivative at X = 3.000000 is: 18.000000
 ```
-
-### Simpson 1/3  Method
+## Solution of Integration
+### Simpson’s 1/3 Rule Method
 #### Simpson 1/3 Theory
 #### Simpson 1/3 Code
 #### Simpson 1/3 Input
 #### Simpson 1/3 Output
 
-### Simpson 3/8  Method
+### Simpson’s 3/8 Rule Method
 #### Simpson 3/8 Theory
 #### Simpson 3/8 Code
 #### Simpson 3/8 Input
 #### Simpson 3/8 Output
-
-### RK4  Method
+## Solution of Differential Equations
+### Runge Kutta 4th Order Method
 #### RK4 Theory
 #### RK4 Code
 ```cpp
@@ -729,7 +730,8 @@ return 0;
 Value of y at x is: 1.10364
 ```
 
-### Linear Regression  Method
+## Solution of Regression
+### Linear Regression Method
 #### Linear Regression Theory
 #### Linear Regression Code
 ```cpp
@@ -794,7 +796,7 @@ Linear Regression Equation:
 y = 1.143 + 1.250x
 ```
 
-### Polynomial Regression  Method
+### Polynomial Regression Method
 #### Polynomial Regression Theory
 #### Polynomial Regression Code
 ```cpp
@@ -897,7 +899,7 @@ Polynomial Regression Equation:
 y = 2.000 + 1.000x + 1.000x^2
 ```
 
-### Transcendental Regression  Method
+### Transcendental Regression Method
 #### Transcendental Regression Theory
 #### Transcendental Regression Code
 ```cpp
