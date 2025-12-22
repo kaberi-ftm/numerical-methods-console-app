@@ -2140,6 +2140,48 @@ Value of y at x is: 1.10364
 ## Solution of Regression
 ### Linear Regression Method
 #### Linear Regression Theory
+### 1. Introduction
+Linear Regression is a numerical and statistical method used to model the relationship between a dependent variable and one or more independent variables.  
+It fits a straight line through the data points that best represents the trend.  
+This method is widely used in engineering, science, and economics for prediction, trend analysis, and estimating unknown values.
+
+### 2. Mathematical Principle
+In simple linear regression, the relationship between the dependent variable y and independent variable x is expressed as:
+
+y = m * x + c
+
+where:  
+- y is the dependent variable  
+- x is the independent variable  
+- m is the slope of the line  
+- c is the intercept  
+
+The slope and intercept are calculated using the least squares method, which minimizes the sum of squared differences between observed and predicted values:
+
+m = (nΣxy - ΣxΣy) / (nΣx² - (Σx)²)  
+c = (Σy - mΣx) / n
+
+### 3. Procedure Explanation
+- Collect paired data points (x_i, y_i).  
+- Compute the sums Σx, Σy, Σx², and Σxy.  
+- Calculate the slope m and intercept c using the least squares formulas.  
+- Construct the regression line y = m*x + c to estimate or predict values.
+
+### 4. Algorithm
+1. Gather the data points (x_i, y_i).  
+2. Compute Σx, Σy, Σx², and Σxy.  
+3. Calculate slope m = (nΣxy - ΣxΣy) / (nΣx² - (Σx)²)  
+4. Calculate intercept c = (Σy - mΣx) / n  
+5. Form the regression equation y = m*x + c  
+6. Use the equation to predict or estimate values of y.
+
+### 5. Discussion and Comparison
+- Linear regression provides a simple and effective model for trends that are approximately linear.  
+- Less accurate for non-linear relationships; higher-order regression may be required.  
+- Forms the basis for multiple regression and more advanced predictive techniques.  
+- Widely used in engineering, economics, and scientific data analysis.
+
+
 #### Linear Regression Code
 ```cpp
 #include <bits/stdc++.h>
@@ -2205,6 +2247,44 @@ y = 1.143 + 1.250x
 
 ### Polynomial Regression Method
 #### Polynomial Regression Theory
+### 1. Introduction
+Polynomial Regression is a numerical method used to model the relationship between a dependent variable and an independent variable as an nth-degree polynomial.  
+It is useful when the relationship between variables is non-linear.  
+By fitting a polynomial curve through the data, it provides a flexible model for prediction and trend analysis in engineering and scientific applications.
+
+### 2. Mathematical Principle
+The regression equation is expressed as:
+
+y = a₀ + a₁*x + a₂*x² + ...+ aₙ*xⁿ
+
+where:  
+- y is the dependent variable  
+- x is the independent variable  
+- a₀, a₁, ..., aₙ are the coefficients  
+
+The coefficients are determined using the least squares method, which minimizes the sum of squared differences between observed and predicted values.
+
+### 3. Procedure Explanation
+- Collect the data points (x_i, y_i).  
+- Decide the degree n of the polynomial based on the trend of the data.  
+- Formulate the system of equations using the least squares method.  
+- Solve for the coefficients a₀, a₁, ..., aₙ.  
+- Construct the polynomial regression equation for prediction or analysis.
+
+### 4. Algorithm
+1. Gather the data points (x_i, y_i).  
+2. Choose the degree of the polynomial n.  
+3. Set up the normal equations for least squares.  
+4. Solve the system to compute the coefficients a₀, a₁, ..., aₙ.  
+5. Form the polynomial equation: y = a₀ + a₁*x + a₂*x² +... + aₙ*xⁿ  
+6. Use the equation to predict or estimate values of y.
+
+### 5. Discussion and Comparison
+- Polynomial regression can model non-linear relationships more accurately than linear regression.  
+- A higher-degree polynomial may lead to overfitting, while a lower degree may underfit.  
+- Widely used in curve fitting, engineering data analysis, and predictive modeling.  
+- Forms the basis for advanced techniques like spline regression or piecewise regression.
+
 #### Polynomial Regression Code
 ```cpp
 #include <bits/stdc++.h>
@@ -2308,6 +2388,41 @@ y = 2.000 + 1.000x + 1.000x^2
 
 ### Transcendental Regression Method
 #### Transcendental Regression Theory
+### 1. Introduction
+Transcendental Regression is a numerical method used to model the relationship between variables using transcendental functions such as exponential, logarithmic, or trigonometric functions.  
+It is useful when the data does not fit well to a linear or polynomial model.  
+This method helps in predicting values and analyzing trends in engineering, science, and applied mathematics.
+
+### 2. Mathematical Principle
+In Transcendental Regression, the dependent variable y is related to the independent variable x through a transcendental function. Examples include:
+
+- Exponential: y = a * e^(b*x)  
+- Logarithmic: y = a + b * ln(x)  
+- Trigonometric: y = a * sin(b*x) + c  
+
+The coefficients a, b, c, etc., are determined using the least squares method, minimizing the sum of squared differences between observed and predicted values.
+
+### 3. Procedure Explanation
+- Collect the data points (x_i, y_i).  
+- Choose the appropriate transcendental function based on the trend of the data.  
+- Transform the function if necessary (e.g., taking logarithms for exponential regression).  
+- Use the least squares method to compute the coefficients.  
+- Construct the regression equation for prediction or analysis.
+
+### 4. Algorithm
+1. Gather the data points (x_i, y_i).  
+2. Select the suitable transcendental model for the data.  
+3. Transform the equation if needed to simplify computation.  
+4. Compute the coefficients using the least squares method.  
+5. Form the regression equation using the calculated coefficients.  
+6. Use the equation to estimate or predict values of y.
+
+### 5. Discussion and Comparison
+- Useful when data follows an exponential, logarithmic, or trigonometric trend.  
+- Provides better fitting than linear or polynomial regression for certain datasets.  
+- Transformations may be required to simplify computations.  
+- Widely applied in population growth, radioactive decay, and engineering applications.
+
 #### Transcendental Regression Code
 ```cpp
 #include <bits/stdc++.h>
