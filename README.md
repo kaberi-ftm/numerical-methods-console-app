@@ -77,6 +77,8 @@
 
 ## Solution of Linear Equations
 
+
+
 ### Gauss Elimination Method
 #### Gauss Elimination Theory
 
@@ -542,7 +544,40 @@ x3 = -1.000
 ```
 ## Solution of NonLinear Equations
 ### Bisection Method
+
 #### Bisection Theory
+### 1. Introduction
+The Bisection Method is one of the oldest and most reliable numerical methods used for solving non-linear equations of the form f(x)=0.
+In many engineering and scientific problems, it is not possible to obtain an exact analytical solution. In such cases, numerical techniques are applied to approximate the solution.
+The bisection method is based on a simple idea of repeatedly dividing an interval into two equal halves until the root is located with sufficient accuracy.
+This method is particularly useful when the function is continuous and a change in sign occurs over a given interval.
+Although the method converges slowly compared to modern open methods, its reliability makes it an important foundation in numerical analysis.
+
+### 2. Mathematical Principle
+According to the Intermediate Value Theorem, if a function f(x) is continuous on the interval [a, b] and f(a)f(b) < 0,
+then there exists at least one real root between a and b.
+The midpoint of the interval is calculated as:
+c = (a + b) / 2
+
+### 3. Procedure Explanation
+The method starts by selecting an interval where the function values have opposite signs.
+At each iteration, the interval is divided into two halves and the midpoint is tested.
+Depending on the sign of the function at the midpoint, one half of the interval is discarded.
+This process is repeated, gradually shrinking the interval containing the root.
+
+### 4. Algorithm
+1. Choose initial values a and b such that f(a)f(b) < 0.
+2. Calculate the midpoint c = (a + b)/2.
+3. Evaluate f(c).
+4. If f(c) = 0, c is the root.
+5. If f(a)f(c) < 0, set b = c; otherwise set a = c.
+6. Repeat until the desired accuracy is obtained.
+7. 
+### 5. Discussion and Comparison
+The bisection method always maintains a bracketing interval, which ensures stable convergence.
+Compared to Regula Falsi, it does not use function values for interpolation, resulting in slower convergence.
+Compared to Secant and Newton–Raphson methods, it converges more slowly but does not suffer from divergence issues.
+
 #### Bisection Code
 
 ```cpp
@@ -613,6 +648,38 @@ Root : -1
 
 ### False Position Method
 #### False Position Theory
+
+### 1. Introduction
+The Regula Falsi Method, also known as the False Position Method, is a numerical technique used to find approximate roots of non-linear equations.
+It is a modification of the Bisection Method and was developed to improve the speed of convergence while maintaining reliability.
+This method is particularly useful when the function is continuous and a root is known to lie within a specific interval.
+
+### 2. Mathematical Foundation
+Like the bisection method, Regula Falsi is based on the Intermediate Value Theorem.
+However, instead of dividing the interval into two equal parts, the method uses linear interpolation between two points.
+The root is approximated by the point where the straight line joining (a, f(a)) and (b, f(b)) intersects the x-axis.
+The formula used is:
+x = (a f(b) - b f(a)) / (f(b) - f(a))
+
+### 3. Working Principle
+The method starts with two initial values that bracket the root.
+A straight line is drawn between these points, and the x-intercept of this line is taken as the next approximation.
+Based on the sign of the function at this point, one end of the interval is replaced.
+This ensures that the root always remains bracketed.
+
+### 4. Algorithm
+1. Choose initial values a and b such that f(a)f(b) < 0.
+2. Compute the new approximation using the Regula Falsi formula.
+3. Evaluate the function at the new approximation.
+4. Replace a or b based on the sign of the function value.
+5. Repeat until the desired accuracy is achieved.
+
+### 5. Discussion and Comparison
+Regula Falsi converges faster than the Bisection Method because it uses function values.
+However, it still maintains a bracketing interval unlike Secant or Newton–Raphson methods.
+In some cases, one end of the interval may remain fixed, slowing convergence compared to open methods.
+
+
 #### False Position Code
 
 ```cpp
@@ -699,6 +766,32 @@ Root : 2.99991
 
 ### Newton Raphson Method
 #### Newton Raphson Theory
+### 1. Introduction
+The Newton–Raphson Method is a powerful and widely used numerical method for solving non-linear equations.
+It is especially effective when a good initial approximation is available.
+This method is commonly used in engineering analysis due to its fast convergence.
+
+### 2. Mathematical Theory
+The method is derived from the Taylor series expansion of a function.
+By approximating the function using its first-order derivative, a tangent line is constructed at each iteration.
+The iterative formula is:
+x(n+1) = x(n) - f(x(n)) / f'(x(n))
+
+### 3. Working Mechanism
+Starting from an initial guess, a tangent is drawn to the curve at that point.
+The point where the tangent intersects the x-axis becomes the next approximation.
+Repeated application leads to rapid convergence toward the root.
+
+### 4. Algorithm
+1. Choose an initial guess x0.
+2. Compute f(x0) and f'(x0).
+3. Calculate the next approximation.
+4. Repeat until convergence.
+
+### 5. Discussion and Comparison
+Newton–Raphson converges faster than Bisection, Regula Falsi, and Secant methods.
+However, it requires derivative evaluation and may fail if the initial guess is poor.
+
 #### Newton Raphson Code
 ```
 #include <iostream>
@@ -798,6 +891,35 @@ while(a<xmax){
 
 ### Secant Method
 #### Secant Theory
+Secant Method
+
+### 1. Introduction
+The Secant Method is an open numerical method used to find approximate roots of non-linear equations.
+Unlike bracketing methods, it does not require the root to lie within a predefined interval.
+This method is particularly useful when derivative evaluation is difficult or computationally expensive.
+
+### 2. Mathematical Background
+The Secant Method approximates the derivative using a finite difference approach.
+Instead of calculating the exact derivative as in Newton–Raphson, it uses two previous approximations to estimate the slope.
+The iterative formula is:
+x(n+1) = x(n) - f(x(n))(x(n) - x(n-1)) / (f(x(n)) - f(x(n-1)))
+
+### 3. Working Principle
+A straight line (secant) is drawn through two points on the curve.
+The intersection of this secant with the x-axis provides the next approximation.
+This geometric interpretation explains why the method often converges faster than bracketing methods.
+
+### 4. Algorithm
+1. Select two initial approximations x0 and x1.
+2. Evaluate f(x0) and f(x1).
+3. Apply the secant formula to compute x2.
+4. Repeat the process until convergence.
+
+### 5. Discussion and Comparison
+The Secant Method converges faster than Bisection and Regula Falsi methods.
+Unlike Newton–Raphson, it does not require derivative evaluation.
+However, it lacks guaranteed convergence and depends strongly on initial guesses.
+
 #### Secant Code
 ```
 #include<bits/stdc++.h>
