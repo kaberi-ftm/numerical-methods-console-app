@@ -51,8 +51,8 @@
 
 | Algorithm | 📄 Concept | 💻 Source | 📥 Test Data | 📤 Result |
 | :--- | :---: | :---: | :---: | :---: |
-| [**Simpson’s 1/3 Rule**](#simpsons-13-rule) | [Theory](#simpson-13-theory) | [Code](#simpson-13-code) | [Input](#simpson-13-input) | [Output](#simpson-13-output) |
-| [**Simpson’s 3/8 Rule**](#simpsons-38-rule) | [Theory](#simpson-38-theory) | [Code](#simpson-38-code) | [Input](#simpson-38-input) | [Output](#simpson-38-output) |
+| [**Simpson’s 1/3 Rule**](#simpsons-1/3-rule) | [Theory](#simpson-13-theory) | [Code](#simpson-13-code) | [Input](#simpson-13-input) | [Output](#simpson-13-output) |
+| [**Simpson’s 3/8 Rule**](#simpsons-3/8-rule) | [Theory](#simpson-38-theory) | [Code](#simpson-38-code) | [Input](#simpson-38-input) | [Output](#simpson-38-output) |
 
 ---
 
