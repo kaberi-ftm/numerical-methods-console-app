@@ -167,10 +167,7 @@ The method works by performing elementary row operations to reduce the coefficie
 Once in triangular form, the equations can be solved sequentially starting from the last equation and moving upward (back substitution).
 
 ### 3. Procedure Explanation
-- Represent the system of equations in augmented matrix form [A|b].  
-- Use the first equation to eliminate the first variable from all subsequent equations.  
-- Repeat the process for the second, third, and subsequent variables until an upper triangular matrix is obtained.  
-- Solve for the unknowns using back substitution, starting from the last row.
+ Represent the system of equations in augmented matrix form [A|b]. Use the first equation to eliminate the first variable from all subsequent equations.Repeat the process for the second, third, and subsequent variables until an upper triangular matrix is obtained. Solve for the unknowns using back substitution, starting from the last row.
 
 ### 4. Algorithm
 1. Write the system in augmented matrix form [A|b].  
@@ -181,10 +178,7 @@ Once in triangular form, the equations can be solved sequentially starting from 
 6. Substitute the solved variable into previous equations to find all unknowns.
 
 ### 5. Discussion and Comparison
-- Gauss Elimination provides a direct solution for any non-singular system of linear equations.  
-- Compared to iterative methods like Jacobi or Gauss-Seidel, it gives an exact solution in a finite number of steps.  
-- It can be computationally expensive for very large systems, with complexity O(n^3).  
-- Pivoting strategies (partial or complete) are often used to improve numerical stability.
+ Gauss Elimination provides a direct solution for any non-singular system of linear equations. Compared to iterative methods like Jacobi or Gauss-Seidel, it gives an exact solution in a finite number of steps. It can be computationally expensive for very large systems, with complexity O(n^3). Pivoting strategies (partial or complete) are often used to improve numerical stability.
 
 #### Gauss Elimination Code
 ```cpp
@@ -1195,6 +1189,33 @@ while(a<xmax){
 ```
 #### Newton Raphson Output
 ```
+NO of Degree of the equation : 
+
+The Function f = 1x^4 + 0x^3 + -5x^2 + 0x^1 + 4x^0
+
+1 :
+Root1  :-2
+NUmber of iterations :4
+Search Interval for root1 [-2.4,-1.95]
+
+
+2 :
+Root2  :-1
+NUmber of iterations :2
+Search Interval for root2 [-1.05,-0.6]
+
+
+3 :
+Root3  :0.999986
+NUmber of iterations :2
+Search Interval for root3 [0.75,1.2]
+
+
+4 :
+Root4  :2.00003
+NUmber of iterations :6
+Search Interval for root4 [1.65,2.1]
+
 ```
 
 ### Secant Method
